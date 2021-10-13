@@ -3,13 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
 import React from 'react';
 
-const Sessions = () => {
+const HistoryScreen = () => {
     return (
       <View style={styles.container}>
-        <Text>Welcome to sessions!</Text>
+        <Text style={styles.text}>History</Text>
         <StatusBar style="auto" />
       </View>
     );
   }
 
-export default Sessions
+export default HistoryScreen

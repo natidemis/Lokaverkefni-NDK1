@@ -3,13 +3,13 @@ import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
 import React from 'react';
 
-const HelloWorld = () => {
+const Sessions = () => {
     return (
       <View style={styles.container}>
-        <Text>Hello, World!</Text>
+        <Text style={styles.text}>Welcome to sessions!</Text>
         <StatusBar style="auto" />
       </View>
     );
   }
 
-export default HelloWorld
+export default Sessions
