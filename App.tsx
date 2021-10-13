@@ -1,28 +1,33 @@
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Counter from './Nav/Counter';
 import HelloWorld from './Nav/HelloWorld';
+import Sessions from './Nav/Sessions';
 
 
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
+      <Tab.Navigator>
+        <Tab.Screen 
           name="Counter"
           component={Counter} 
         />
-        <Stack.Screen
+        <Tab.Screen
           name="Hello World"
           component={HelloWorld}
         />
-      </Stack.Navigator>
+        <Tab.Screen
+          name="Sessions"
+          component={Sessions}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
