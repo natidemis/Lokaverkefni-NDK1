@@ -1,13 +1,13 @@
 // ---- Dummy
 
-import { Exercise, ExerciseType, Session, Template } from "./types"
+import { TExercise, ExerciseType, TSession, TTemplate } from "./types"
 
-const dummyTemplate: Template = {
+const dummyTemplate: TTemplate = {
   title: 'my template',
   exercises: [],
 }
 
-function createRandomExercise(): Exercise {
+function createRandomExercise(): TExercise {
   return {
       title: 'Fakeasdfasdfasdfasdf',
       type: ExerciseType.barbell,
@@ -15,7 +15,7 @@ function createRandomExercise(): Exercise {
   }
 }
 
-export const dummySession: Session = {
+export const dummySession: TSession = {
   title: 'My session',
   date: new Date(),
   duration: '10',

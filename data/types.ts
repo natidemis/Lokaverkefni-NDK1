@@ -7,27 +7,27 @@ export enum ExerciseType{
   body = "Bodyweight"
 }
 
-export type Set = {
+export type TSet = {
   previous: string | null | undefined
   weight: number
   reps: number
 }
 
-export type Exercise = {
+export type TExercise = {
   title: string
   type: ExerciseType
-  sets: Set[]
+  sets: TSet[]
 }
 
-export type Template = {
+export type TTemplate = {
   title: string
-  exercises: Exercise[]
+  exercises: TExercise[]
 }
 
-export type Session =  {
+export type TSession =  {
   title: string
   date: Date
   duration: string //Laga seinna set Hh:Mm:Ss format
-  template: Template //
-  exercises: Exercise[] // Líklega upphafstillt sem Template.exercise Ef notandi er að nota ákveðið template.
+  template: TTemplate //
+  exercises: TExercise[] // Líklega upphafstillt sem Template.exercise Ef notandi er að nota ákveðið template.
 }
