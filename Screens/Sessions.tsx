@@ -9,8 +9,8 @@ import { Template } from '../components/Template/Template';
 import { TTemplate } from '../data/types';
 
 const Sessions = () => {
-    const templates: TTemplate[] = [dummyTemplate,dummyTemplate];
-    console.log(templates.length)
+    const templates: TTemplate[] = [dummyTemplate,dummyTemplate,dummyTemplate];
+
     return (
       <React.Fragment>
         <BackgroundImage>

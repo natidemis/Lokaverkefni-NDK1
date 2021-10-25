@@ -12,11 +12,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#ffffff',
-    fontSize: 30,
+    color: 'grey',
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center'
   }, 
+  title: {
+    color: '#000000',
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
   templateContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -37,15 +43,16 @@ export const templateStyle = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    top: 10,
+    flexWrap: 'wrap',
+    top: 50,
+    padding: 30,
   },
   template: {
     backgroundColor: '#ffffff',
     width: 150,
     height: 150,
-    borderWidth: 2,
-    borderColor: 'gray',
     borderRadius: 10,
+    marginTop: 15,
   },
 });
 
