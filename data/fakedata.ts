@@ -2,9 +2,9 @@
 
 import { TExercise, ExerciseType, TSession, TTemplate } from "./types"
 
-const dummyTemplate: TTemplate = {
+export const dummyTemplate: TTemplate = {
   title: 'my template',
-  exercises: [],
+  exercises: [createRandomExercise(),createRandomExercise(),createRandomExercise()],
 }
 
 function createRandomExercise(): TExercise {

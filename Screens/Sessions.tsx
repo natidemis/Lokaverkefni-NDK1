@@ -3,15 +3,18 @@ import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
 import React from 'react';
 import { Session } from '../components/session/Session';
-import { dummySession } from '../data/fakedata';
-import { BackgroundImage } from '../App';
+import {dummyTemplate, dummySession } from '../data/fakedata';
+import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
+import { Template } from '../components/Template/Template';
+import { TTemplate } from '../data/types';
+
 const Sessions = () => {
-  const image = require('../Images/gym.jpg')
+    const templates: TTemplate[] = [dummyTemplate,dummyTemplate];
+    console.log(templates.length)
     return (
       <React.Fragment>
         <BackgroundImage>
-          <Text style={styles.text}>Welcome to sessions!</Text>
-          <Session session={dummySession}></Session>
+          <Template templates={templates}></Template>
           <StatusBar style="auto" />
         </BackgroundImage>
       </React.Fragment>

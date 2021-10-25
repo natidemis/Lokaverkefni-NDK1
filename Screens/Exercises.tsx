@@ -4,18 +4,18 @@ import styles from '../Styles';
 import React from 'react';
 import { dummySession } from '../data/fakedata';
 import { Session as SessionComponent } from '../components/session/Session';
+import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 
-
-const image = require('../Images/gym.jpg')
+//const image = require('../Images/gym.jpg')
 const ExerciseScreen = () => {
     const data = dummySession; // TODO tengja við alvöru gögn gegnum "database" kall
 
     return (
       <React.Fragment>
-        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <BackgroundImage>
           <Text style={styles.text}>Exercises</Text>
           <StatusBar style="auto" />      
-        </ImageBackground>
+        </BackgroundImage>
       </React.Fragment>
     );
   }
