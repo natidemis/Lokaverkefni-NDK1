@@ -5,7 +5,7 @@ import React from 'react';
 import { Session } from '../components/session/Session';
 import {dummyTemplate, dummySession } from '../data/fakedata';
 import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
-import { Template } from '../components/Template/Template';
+import TemplateView from '../components/Template/Template';
 import { TTemplate } from '../data/types';
 
 const Sessions = () => {
@@ -14,7 +14,7 @@ const Sessions = () => {
     return (
       <React.Fragment>
         <BackgroundImage>
-          <Template templates={templates}></Template>
+          <TemplateView templates={templates}></TemplateView>
           <StatusBar style="auto" />
         </BackgroundImage>
       </React.Fragment>
