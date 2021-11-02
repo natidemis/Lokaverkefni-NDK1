@@ -9,7 +9,11 @@ import TemplateView from '../components/Template/Template';
 import { TTemplate } from '../data/types';
 
 const Sessions = () => {
-    const templates: TTemplate[] = [dummyTemplate,dummyTemplate,dummyTemplate];
+    const templates: TTemplate[] = [
+      dummyTemplate,
+      dummyTemplate,
+      dummyTemplate,
+    ];
 
     return (
       <React.Fragment>

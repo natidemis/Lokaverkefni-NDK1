@@ -13,15 +13,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'grey',
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: 'bold',
     textAlign: 'center'
   }, 
   title: {
     color: '#000000',
-    fontSize: 22,
+    fontSize: 15,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 10,
   },
   templateContainer: {
     flex: 1,
@@ -53,6 +54,7 @@ export const templateStyle = StyleSheet.create({
     height: 150,
     borderRadius: 10,
     marginTop: 15,
+    padding: 20,
   },
 });
 
@@ -62,9 +64,10 @@ export const templateModalStyle = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
+    width: '90%',
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -75,20 +78,21 @@ export const templateModalStyle = StyleSheet.create({
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.9,
     shadowRadius: 4,
     elevation: 5
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    marginTop: 10,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "black",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "black",
   },
   textStyle: {
     color: "white",
