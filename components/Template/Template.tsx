@@ -9,6 +9,48 @@ import { dummySession } from "../../data/fakedata"
 
 
 const sessions = [dummySession]; //Most "recent" data for our template
+
+
+type modalProps = {modalVisible: boolean, callback: Function}
+class ModalTemplate extends React.Component<modalProps,any> {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return(
+      <Modal
+            animationType="slide"
+            transparent={true}
+            visible={this.props.modalVisible}
+            onRequestClose={() => {
+              this.props.callback(!this.props.modalVisible,-1);
+            }}
+          >
+          <View style={templateModalStyle.centeredView}>
+            <View style={templateModalStyle.modalView}>
+              {this.props.children}
+              <View style= {templateModalStyle.buttonsView}>
+                <Pressable
+                  style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                  onPress={this.props.callback(!this.props.modalVisible,-1)}
+                >
+                  <Text style={templateModalStyle.textStyle}>Close</Text>
+                </Pressable>
+                <Pressable
+                  style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                  onPress={this.props.callback(!this.props.modalVisible,-1)}
+                >
+                  <Text style={templateModalStyle.textStyle}>Close</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+      </Modal>
+    )
+  }
+}
+
 export default class TemplateView extends React.Component<{templates: TTemplate[]},any>{
     constructor(props){
         super(props)
@@ -27,12 +69,16 @@ export default class TemplateView extends React.Component<{templates: TTemplate[
       /**
        * idx is a template key to fetch a session with a matching template
        */
-      const template: TTemplate = this.props.templates[idx];
-      for(var i = 0; i < sessions.length;i++){
-          var session: TSession = sessions[i];
-          if(session.template.title === template.title){
-            this.setState({modalVisible:  visible, session: session })
-          }
+      if(idx != -1){
+        const template: TTemplate = this.props.templates[idx];
+        for(var i = 0; i < sessions.length;i++){
+            var session: TSession = sessions[i];
+            if(session.template.title === template.title){
+              this.setState({modalVisible:  visible, session: session })
+            }
+        }
+      }else{
+        this.setState({modalVisible: visible, session: null})
       }
     }
 
@@ -57,7 +103,7 @@ export default class TemplateView extends React.Component<{templates: TTemplate[
         }
       }
       return (
-        <SafeAreaView style={templateStyle.container}>
+        <ScrollView contentContainerStyle={templateStyle.container}>
           <Modal
             animationType="slide"
             transparent={true}
@@ -70,15 +116,23 @@ export default class TemplateView extends React.Component<{templates: TTemplate[
               <View style={templateModalStyle.modalView}>
                 <ModalSession/>
 
-                <Pressable
-                  style={[templateModalStyle.button, templateModalStyle.buttonClose]}
-                  onPress={() => this.setModalVisible(!modalVisible)}
-                >
-                  <Text style={templateModalStyle.textStyle}>Close</Text>
-                </Pressable>
+                <View style= {templateModalStyle.buttonsView}>
+                  <Pressable
+                    style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                    onPress={() => this.setModalVisible(!modalVisible)}
+                  >
+                    <Text style={templateModalStyle.textStyle}>Close</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                    onPress={() => this.setModalVisible(!modalVisible)}
+                  >
+                    <Text style={templateModalStyle.textStyle}>Close</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
-          </Modal>  
+          </Modal>
           {this.props.templates.map((template,i) => { 
           return (
               <Pressable key={i} onPress={() => this.setModalVisibleWithKey(true,i)}>
@@ -95,7 +149,7 @@ export default class TemplateView extends React.Component<{templates: TTemplate[
               </Pressable>
             )
           })}   
-        </SafeAreaView> 
+        </ScrollView> 
     )}
 }
 

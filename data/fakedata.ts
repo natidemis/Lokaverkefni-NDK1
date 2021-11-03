@@ -5,7 +5,13 @@ import { TExercise, ExerciseType, TSession, TTemplate, TSet } from "./types"
 
 export const dummyTemplate: TTemplate = {
   title: 'my template',
-  exercises: [createRandomExercise(),createRandomExercise(),createRandomExercise(),createRandomExercise()],
+  exercises: [createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise()],
 }
 
 function createRandomExercise(): TExercise {
@@ -27,15 +33,22 @@ function createSet(): TSet{
 }
 
 export const dummySession: TSession = {
-  title: 'My session',
-  date: new Date(),
+  title: 'My first session',
+  date: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
   duration: '10',
   template: dummyTemplate,
-  exercises: [
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-  ]
+  exercises: [createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise(),
+    createRandomExercise()],
 }

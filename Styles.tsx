@@ -67,6 +67,7 @@ export const templateModalStyle = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
+
     width: '90%',
     margin: 20,
     backgroundColor: "white",
@@ -82,14 +83,20 @@ export const templateModalStyle = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  buttonsView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   button: {
     borderRadius: 5,
     padding: 10,
     elevation: 2,
-    marginTop: 10,
+    marginTop: 20,
+    width: '50%',
   },
   buttonOpen: {
-    backgroundColor: "black",
+    backgroundColor: "red",
   },
   buttonClose: {
     backgroundColor: "black",
