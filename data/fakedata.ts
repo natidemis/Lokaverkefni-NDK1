@@ -1,43 +1,46 @@
 // ---- Dummy
 
-import { TExercise, ExerciseType, TSession, TTemplate, TSet } from "./types"
+import { TExercise, ExerciseType, TSession, TTemplate, TSet } from './types';
 
-
-export const dummyTemplate: TTemplate = {
-  title: 'my template',
-  exercises: [createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise()],
-}
+export const dummyTemplate = (title = 'test template'): TTemplate => {
+  return {
+    title,
+    exercises: [
+      createRandomExercise(),
+      createRandomExercise(),
+      createRandomExercise(),
+      createRandomExercise(),
+      createRandomExercise(),
+      createRandomExercise(),
+      createRandomExercise(),
+    ],
+  };
+};
 
 function createRandomExercise(): TExercise {
   return {
-      title: 'Fakeasdfasdfasdfasdf',
-      type: ExerciseType.barbell,
-      sets: [createSet(),createSet()]
-  }
+    title: 'Réttstöðulyfta',
+    type: ExerciseType.barbell,
+    sets: [createSet(), createSet()],
+  };
 }
 
-function createSet(): TSet{
+function createSet(): TSet {
   const weight = 10;
   const reps = 10;
   return {
-    previous: weight + "×" + reps,
+    previous: weight + '×' + reps,
     weight: weight,
     reps: reps,
-  }
+  };
 }
 
 export const dummySession: TSession = {
   title: 'My first session',
-  date: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+  date: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
   duration: '10',
-  template: dummyTemplate,
-  exercises: [createRandomExercise(),
+  template: dummyTemplate('title'),
+  exercises: [
     createRandomExercise(),
     createRandomExercise(),
     createRandomExercise(),
@@ -50,5 +53,7 @@ export const dummySession: TSession = {
     createRandomExercise(),
     createRandomExercise(),
     createRandomExercise(),
-    createRandomExercise()],
-}
+    createRandomExercise(),
+    createRandomExercise(),
+  ],
+};

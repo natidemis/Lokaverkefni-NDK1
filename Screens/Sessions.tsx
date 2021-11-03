@@ -10,9 +10,9 @@ import { TTemplate } from '../data/types';
 
 const Sessions = () => {
     const templates: TTemplate[] = [
-      dummyTemplate,
-      dummyTemplate,
-      dummyTemplate,
+      dummyTemplate('template 1'),
+      dummyTemplate('template 2'),
+      dummyTemplate('template 3'),
     ];
 
     return (
