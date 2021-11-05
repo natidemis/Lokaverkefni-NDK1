@@ -84,6 +84,9 @@ export const templateModalStyle = StyleSheet.create({
     elevation: 5
   },
   buttonsView: {
+    display: 'flex',
+    height: 100,
+    marginBottom: 50,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -94,17 +97,21 @@ export const templateModalStyle = StyleSheet.create({
     elevation: 2,
     marginTop: 20,
     width: '50%',
+    display: 'flex',
   },
   buttonOpen: {
     backgroundColor: "red",
   },
   buttonClose: {
     backgroundColor: "black",
+    color: 'white',
   },
   textStyle: {
+    backgroundColor: 'black',
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    height: 30,
   },
   modalText: {
     marginBottom: 15,
