@@ -18,22 +18,27 @@ export default function TemplateModalComponent(props) {
          <View style={templateModalStyle.modalView}>
            <Text>{props.activeTemplate?.title}</Text>
            {props.activeTemplate && props.activeTemplate?.map((exercise, i) => {
-             return(<Text key={i}> {exercise.sets.length} '×' {exercise.title}</Text>)
-           })}
-           <View style={templateModalStyle.buttonsView}>
-             <Pressable
-               style={templateModalStyle.button}
-               onPress={() => props.onChange(!props.modalVisible)}
-             >
-               <Text style={templateModalStyle.textStyle}>Start</Text>
-             </Pressable>
-             <Pressable
-               style={templateModalStyle.button}
-               onPress={() => props.onChange(!props.modalVisible)}
-             >
-               <Text style={templateModalStyle.textStyle}>Close</Text>
-             </Pressable>
-           </View>
+              return(<Text key={i}> {exercise.sets.length} '×' {exercise.title}</Text>)
+            })}
+            <View style={templateModalStyle.buttonsView}
+              onLayout={(event) => {
+                var {x,y,width, height} = event.nativeEvent.layout;
+                console.log(x,y,width,height)
+              }}
+            >
+              <Pressable
+                style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                onPress={() => props.onChange(!props.modalVisible)}
+               >
+                <Text style={templateModalStyle.textStyle}>Start</Text>
+              </Pressable>
+              <Pressable
+                style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                onPress={() => props.onChange(!props.modalVisible)}
+              >
+                <Text style={templateModalStyle.textStyle}>Start</Text>
+              </Pressable>
+            </View>
          </View>
        </View>
      </Modal>
