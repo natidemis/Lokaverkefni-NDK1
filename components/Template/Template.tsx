@@ -9,16 +9,24 @@ import TemplateModalComponent from "./TemplateModal"
 const sessions = [dummySession]; //Most "recent" data for our template
 
 
-export default function TemplateView({templates}: {templates: TTemplate[]}) {
+export default function TemplateView({
+                                    templates, onChange}:
+                                    {templates: TTemplate[], onChange: Function}) {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
+
 
   return (
     <ScrollView contentContainerStyle={templateStyle.container}>
         <TemplateModalComponent
          modalVisible={modalVisible}
          activeTemplate={activeTemplate}
-         onChange={setModalVisible}
+         onChange={
+          (isVisible: boolean, template: TTemplate | null = null) =>{
+           setModalVisible(isVisible);
+           onChange(template);
+          }
+        }
          />
         {templates.map((template, i) => {
           return (

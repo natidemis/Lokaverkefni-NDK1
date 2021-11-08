@@ -29,7 +29,6 @@ function createSet(): TSet {
   const weight = 10;
   const reps = 10;
   return {
-    previous: weight + '×' + reps,
     weight: weight,
     reps: reps,
   };

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, AntDesign, FontAwesome  } from '@expo/vector-icons';
 import ExerciseScreen from './Screens/Exercises';
 import HistoryScreen from './Screens/History';
-import Sessions from './Screens/Sessions';
+import Sessions from './Screens/Workout';
 
 
 
@@ -39,7 +39,7 @@ const Tabs = () => {
           }}
         />
         <Tab.Screen
-          name="Sessions"
+          name="Workout"
           component={Sessions}
           options={{
               tabBarIcon: ({focused, color, size}) => {
