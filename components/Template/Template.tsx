@@ -10,7 +10,6 @@ const sessions = [dummySession]; //Most "recent" data for our template
 
 
 export default function TemplateView({templates}: {templates: TTemplate[]}) {
-  const [session, setSession] = useState<TSession | null>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
 

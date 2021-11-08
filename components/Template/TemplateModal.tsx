@@ -17,6 +17,9 @@ export default function TemplateModalComponent(props) {
        <View style={templateModalStyle.centeredView}>
          <View style={templateModalStyle.modalView}>
            <Text>{props.activeTemplate?.title}</Text>
+           {props.activeTemplate && props.activeTemplate?.map((exercise, i) => {
+             return(<Text key={i}> {exercise.sets.length} '×' {exercise.title}</Text>)
+           })}
            <View style={templateModalStyle.buttonsView}>
              <Pressable
                style={templateModalStyle.button}
@@ -25,7 +28,7 @@ export default function TemplateModalComponent(props) {
                <Text style={templateModalStyle.textStyle}>Start</Text>
              </Pressable>
              <Pressable
-               style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+               style={templateModalStyle.button}
                onPress={() => props.onChange(!props.modalVisible)}
              >
                <Text style={templateModalStyle.textStyle}>Close</Text>

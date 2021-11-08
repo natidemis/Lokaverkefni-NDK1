@@ -99,6 +99,7 @@ export const templateModalStyle = StyleSheet.create({
     width: '50%',
     display: 'flex',
     
+    
   },
   buttonOpen: {
     backgroundColor: "red",
@@ -112,7 +113,8 @@ export const templateModalStyle = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
-    height: 30,
+    height: 20,
+    borderRadius: 20,
   },
   modalText: {
     marginBottom: 15,
