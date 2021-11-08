@@ -39,7 +39,7 @@ export const dummySession: TSession = {
   title: 'My first session',
   date: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
   duration: '10',
-  template: dummyTemplate('title'),
+  template: dummyTemplate('template 1'),
   exercises: [
     createRandomExercise(),
     createRandomExercise(),

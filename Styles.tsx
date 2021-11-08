@@ -51,7 +51,6 @@ export const templateStyle = StyleSheet.create({
   template: {
     backgroundColor: '#ffffff',
     width: 150,
-    height: 150,
     borderRadius: 10,
     marginTop: 15,
     padding: 20,
@@ -67,12 +66,13 @@ export const templateModalStyle = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-
+    display: 'flex',
+    flexDirection: 'column',
     width: '90%',
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -81,33 +81,27 @@ export const templateModalStyle = StyleSheet.create({
     },
     shadowOpacity: 0.9,
     shadowRadius: 4,
-    elevation: 5
   },
   buttonsView: {
     display: 'flex',
-    height: 100,
-    marginBottom: 50,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    height: 0,
+    backgroundColor: 'red',
   },
   button: {
     borderRadius: 5,
     padding: 10,
     elevation: 2,
-    marginTop: 20,
-    width: '50%',
-    display: 'flex',
+    height: 30,
   },
   buttonOpen: {
     backgroundColor: "red",
   },
   buttonClose: {
     backgroundColor: "black",
-    color: 'white',
   },
   textStyle: {
-    backgroundColor: 'black',
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
