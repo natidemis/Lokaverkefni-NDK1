@@ -20,7 +20,16 @@ const Sessions = () => {
     return (
       <React.Fragment>
         <BackgroundImage>
-          <TemplateView templates={templates} onChange={setActiveTemplate}></TemplateView>
+          <TemplateView 
+            templates={templates}
+            setActiveTemplateForWorkout={setActiveTemplate}
+            setSessionModalVisible={setSessionActivityState}
+            />
+          <Session 
+            modalVisible= {isSessionActive}
+            template={activeTemplate}
+            setSessionActivityState={setSessionActivityState}
+          />
           <StatusBar style="auto" />
         </BackgroundImage>
       </React.Fragment>

@@ -10,8 +10,10 @@ const sessions = [dummySession]; //Most "recent" data for our template
 
 
 export default function TemplateView({
-                                    templates, onChange}:
-                                    {templates: TTemplate[], onChange: Function}) {
+                                    templates, setActiveTemplateForWorkout, setSessionModalVisible}:
+                                    {templates: TTemplate[], 
+                                    setActiveTemplateForWorkout: Function,
+                                    setSessionModalVisible: Function}) {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
 
@@ -22,9 +24,10 @@ export default function TemplateView({
          modalVisible={modalVisible}
          activeTemplate={activeTemplate}
          onChange={
-          (isVisible: boolean, template: TTemplate | null = null) =>{
+          (isVisible: boolean, template: TTemplate | null = null, sessionModalVisible = false) =>{
            setModalVisible(isVisible);
-           onChange(template);
+           setActiveTemplateForWorkout(template);
+           setSessionModalVisible(sessionModalVisible);
           }
         }
          />

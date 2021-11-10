@@ -1,7 +1,10 @@
 import React, { useEffect } from "react"
-import { Modal, ScrollView, Text } from "react-native"
-import { TSession as SessionType, TTemplate } from "../../data/types"
+import { Modal, ScrollView, Text, TextInput, View } from "react-native"
+import { TExercise, TSession as SessionType, TSet, TTemplate } from "../../data/types"
 import { Exercise } from "../exercise/Exercise"
+import ExcerciseRow from "./SessionComponents"
+import { sessionStyle } from "./SessionStyle"
+
 
 
 export function Session({ modalVisible, template, setSessionActivityState}: 
@@ -15,12 +18,19 @@ export function Session({ modalVisible, template, setSessionActivityState}:
     <Modal
       animationType = "none"
       visible={modalVisible}
+      transparent={true}
       onRequestClose={() => {
         setSessionActivityState(!modalVisible)
       }}
     >
-      <ScrollView>
-        
+      <ScrollView contentContainerStyle={sessionStyle.centeredView}>
+        <View style={sessionStyle.modalView}>
+          <Text>{template?.title}</Text>
+          {template?.exercises.map((exercise,i) => {
+            //Exercise row ekki að birtast?
+            <ExcerciseRow Exercise={exercise} key={i}/>
+          })}
+        </View>
       </ScrollView>
     </Modal>
   )

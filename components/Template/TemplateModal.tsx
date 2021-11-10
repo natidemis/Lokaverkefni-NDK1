@@ -40,7 +40,7 @@ export default function TemplateModalComponent(
                 style={[templateModalStyle.button, templateModalStyle.buttonClose]}
                 onPress={() => {
                   //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
-                  onChange(!modalVisible, activeTemplate);
+                  onChange(!modalVisible, activeTemplate, true);
                   setAnimation(Animations.slide);
                 }}
                >
