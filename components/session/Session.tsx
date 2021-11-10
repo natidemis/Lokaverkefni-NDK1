@@ -1,11 +1,11 @@
 import React, { useEffect } from "react"
-import { Modal, Text } from "react-native"
+import { Modal, ScrollView, Text } from "react-native"
 import { TSession as SessionType, TTemplate } from "../../data/types"
 import { Exercise } from "../exercise/Exercise"
-import styles from "../../Styles"
 
-export function Session({ modalVisible, template }: 
-  {modalVisible: boolean, template: TTemplate }) {
+
+export function Session({ modalVisible, template, setSessionActivityState}: 
+  {modalVisible: boolean, template: TTemplate, setSessionActivityState: Function }) {
     //useEffect(() => { //nota til þess að loka glugga
     //  
     //})
@@ -15,8 +15,13 @@ export function Session({ modalVisible, template }:
     <Modal
       animationType = "none"
       visible={modalVisible}
-      onRequestClose={() => {}}
+      onRequestClose={() => {
+        setSessionActivityState(!modalVisible)
+      }}
     >
+      <ScrollView>
+        
+      </ScrollView>
     </Modal>
   )
 }

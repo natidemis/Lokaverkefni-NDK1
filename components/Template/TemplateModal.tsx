@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Modal, Pressable, View, Text } from "react-native";
-import { TSession, TTemplate } from "../../data/types";
-import { templateModalStyle } from "../../Styles";
+import { TTemplate } from "../../data/types";
+import { templateModalStyle } from "./TemplateStyles";
 
 export default function TemplateModalComponent(
   {modalVisible, activeTemplate, onChange}:
@@ -10,7 +10,7 @@ export default function TemplateModalComponent(
       slide = "slide",
       none = "none"
     }
-    console.log('-----')
+ 
     const [animation, setAnimation] = useState<Animations>(Animations.slide);
     //useEffect(() => {
     //  console.log("here")
@@ -39,8 +39,8 @@ export default function TemplateModalComponent(
               <Pressable
                 style={[templateModalStyle.button, templateModalStyle.buttonClose]}
                 onPress={() => {
-                  onChange(!modalVisible);
-
+                  //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+                  onChange(!modalVisible, activeTemplate);
                   setAnimation(Animations.slide);
                 }}
                >
@@ -49,8 +49,8 @@ export default function TemplateModalComponent(
               <Pressable
                 style={[templateModalStyle.button, templateModalStyle.buttonClose]}
                 onPress={() => { 
-                  //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
-                  onChange(!modalVisible, activeTemplate);
+                  onChange(!modalVisible);
+
                   setAnimation(Animations.slide);
                 }}
               >

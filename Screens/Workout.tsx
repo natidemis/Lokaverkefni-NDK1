@@ -10,6 +10,7 @@ import {TTemplate } from '../data/types';
 
 const Sessions = () => {
     const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
+    const [isSessionActive, setSessionActivityState] = useState<boolean>(false);
     const templates: TTemplate[] = [
       dummyTemplate('template 1'),
       dummyTemplate('template 2'),
