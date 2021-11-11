@@ -7,7 +7,9 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
     const [inputReps, setInputReps] = React.useState<string>()
     return(
       <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
-        <View>{rowID}</View>
+        <View>
+          <Text>{rowID}</Text>
+        </View>
         <Text>{set.previousKG} × {set.previousREPS} </Text>
         <TextInput
           style= {{backgroundColor:'#808080' }}
@@ -43,7 +45,9 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
         <Header/>
         <View style ={{flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
           {Exercise.sets.map((set, i) => {
-            <SetRow set={set} key={i} rowID={i}/>
+            return(
+              <SetRow set={set} key={i} rowID={i}/>
+            )
           })}
         </View>
       </React.Fragment>

@@ -28,7 +28,9 @@ export function Session({ modalVisible, template, setSessionActivityState}:
           <Text>{template?.title}</Text>
           {template?.exercises.map((exercise,i) => {
             //Exercise row ekki að birtast?
-            <ExcerciseRow Exercise={exercise} key={i}/>
+            return(
+              <ExcerciseRow Exercise={exercise} key={i}/>
+            )
           })}
         </View>
       </ScrollView>
