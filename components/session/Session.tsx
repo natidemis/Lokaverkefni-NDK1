@@ -1,7 +1,8 @@
 import React, { useEffect } from "react"
-import { Modal, ScrollView, Text, TextInput, View } from "react-native"
+import { Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
 import { TExercise, TSession as SessionType, TSet, TTemplate } from "../../data/types"
 import { Exercise } from "../exercise/Exercise"
+import { templateModalStyle } from "../Template/TemplateStyles"
 import ExcerciseRow from "./SessionComponents"
 import { sessionStyle } from "./SessionStyle"
 
@@ -33,6 +34,14 @@ export function Session({ modalVisible, template, setSessionActivityState}:
             )
           })}
         </View>
+        <Pressable
+                style={[templateModalStyle.button, templateModalStyle.buttonClose]}
+                onPress={() => { 
+                  setSessionActivityState(!modalVisible);
+                }}
+              >
+                <Text style={templateModalStyle.textStyle}>Close</Text>
+              </Pressable>
       </ScrollView>
     </Modal>
   )
