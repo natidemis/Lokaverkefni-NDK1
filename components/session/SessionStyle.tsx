@@ -13,8 +13,8 @@ export const sessionStyle = StyleSheet.create({
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,
-      padding: 20,
-      alignItems: "center",
+      padding: 35,
+      alignItems: "baseline",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -51,5 +51,18 @@ export const sessionStyle = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
+    },
+    exerciseHeaderStyle: {
+      flex: 0,
+      alignSelf: 'stretch',
+      flexDirection: 'row',
+      justifyContent: "space-between"
+    },
+    exerciseSetStyle: {
+      flex: 0,
+      alignSelf: 'stretch',
+      flexDirection: 'row',
+      justifyContent: "space-between"
+
     }
   })

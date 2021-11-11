@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
 import { TExercise, TSession as SessionType, TSet, TTemplate } from "../../data/types"
+import styles from "../../Styles"
 import { Exercise } from "../exercise/Exercise"
 import { templateModalStyle } from "../Template/TemplateStyles"
 import ExcerciseRow from "./SessionComponents"
@@ -26,7 +27,7 @@ export function Session({ modalVisible, template, setSessionActivityState}:
     >
       <ScrollView contentContainerStyle={sessionStyle.centeredView}>
         <View style={sessionStyle.modalView}>
-          <Text>{template?.title}</Text>
+          <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
           {template?.exercises.map((exercise,i) => {
             //Exercise row ekki að birtast?
             return(

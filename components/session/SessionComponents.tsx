@@ -1,16 +1,18 @@
 import React from "react";
 import { TextInput, View, Text } from "react-native";
 import { TExercise, TSet } from "../../data/types";
+import styles from "../../Styles";
+import { sessionStyle } from "./SessionStyle";
 
 function SetRow( { set, rowID }: {set: TSet, rowID: number}){
     const [inputKG, setInputKG] = React.useState<string>();
     const [inputReps, setInputReps] = React.useState<string>()
     return(
-      <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
+      <View style={sessionStyle.exerciseSetStyle}>
         <View>
           <Text>{rowID}</Text>
         </View>
-        <Text>{set.previousKG} × {set.previousREPS} </Text>
+        <Text>{set.previousKG} × {set.previousREPS}</Text>
         <TextInput
           style= {{backgroundColor:'#808080' }}
           keyboardType='numeric'
@@ -29,11 +31,11 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
   
   function Header(){
     return(
-      <View style= {{flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
-        <Text>Set</Text>
-        <Text>Previous</Text>
-        <Text>kg</Text>
-        <Text>Reps</Text>
+      <View style= {sessionStyle.exerciseHeaderStyle}>
+        <Text style={styles.title}>Set</Text>
+        <Text style={styles.title}>Previous</Text>
+        <Text style={styles.title}>kg</Text>
+        <Text style={styles.title}>Reps</Text>
       </View>
     )
   }
@@ -41,15 +43,16 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
   export default function ExcerciseRow( { Exercise }: { Exercise: TExercise}){
     return(
       <React.Fragment>
-        <Text>{Exercise.title}</Text>
+        <Text style={styles.title}>{Exercise.title}</Text>
         <Header/>
-        <View style ={{flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
+         <View style={{display: 'flex'}}>
           {Exercise.sets.map((set, i) => {
             return(
               <SetRow set={set} key={i} rowID={i}/>
             )
           })}
-        </View>
+        </View> 
+        
       </React.Fragment>
     )
   }
