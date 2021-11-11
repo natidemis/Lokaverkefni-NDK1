@@ -31,6 +31,8 @@ function createSet(): TSet {
   return {
     weight: weight,
     reps: reps,
+    previousKG: 10,
+    previousREPS: 10
   };
 }
 

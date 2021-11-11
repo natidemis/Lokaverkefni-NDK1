@@ -10,8 +10,8 @@ export enum ExerciseType{
 export type TSet = {
   weight: number
   reps: number
-  previousKG: number
-  previousREPS: number
+  previousKG: number | null
+  previousREPS: number | null
 }
 
 export type TExercise = {

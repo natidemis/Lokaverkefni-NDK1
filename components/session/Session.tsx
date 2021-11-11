@@ -25,8 +25,8 @@ export function Session({ modalVisible, template, setSessionActivityState}:
         setSessionActivityState(!modalVisible)
       }}
     >
-      <ScrollView contentContainerStyle={sessionStyle.centeredView}>
-        <View style={sessionStyle.modalView}>
+      <View style={sessionStyle.centeredView}>
+        <ScrollView contentContainerStyle={sessionStyle.modalView}>
           <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
           {template?.exercises.map((exercise,i) => {
             //Exercise row ekki að birtast?
@@ -34,7 +34,7 @@ export function Session({ modalVisible, template, setSessionActivityState}:
               <ExcerciseRow Exercise={exercise} key={i}/>
             )
           })}
-        </View>
+        </ScrollView>
         <Pressable
                 style={[templateModalStyle.button, templateModalStyle.buttonClose]}
                 onPress={() => { 
@@ -43,7 +43,7 @@ export function Session({ modalVisible, template, setSessionActivityState}:
               >
                 <Text style={templateModalStyle.textStyle}>Close</Text>
               </Pressable>
-      </ScrollView>
+      </View>
     </Modal>
   )
 }

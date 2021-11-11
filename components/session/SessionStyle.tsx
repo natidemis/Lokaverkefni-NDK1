@@ -10,7 +10,7 @@ export const sessionStyle = StyleSheet.create({
       display: 'flex',
       flexDirection: 'column',
       width: '90%',
-      margin: 20,
+      margin: 0,
       backgroundColor: "white",
       borderRadius: 20,
       padding: 35,
@@ -56,13 +56,27 @@ export const sessionStyle = StyleSheet.create({
       flex: 0,
       alignSelf: 'stretch',
       flexDirection: 'row',
-      justifyContent: "space-between"
+      justifyContent: "space-around",
     },
     exerciseSetStyle: {
       flex: 0,
       alignSelf: 'stretch',
       flexDirection: 'row',
-      justifyContent: "space-between"
-
+      justifyContent: "space-around",
+      width: '90%',
+      marginBottom: 10,
+    },
+    exerciseStyle: {
+      flex: 1,
+      flexDirection: 'row',
+    },
+    setInput: {
+      backgroundColor:'#E1E1E1',
+      width: 25,
+      height: 25,
+      borderRadius: 5,
+      opacity: 1,
+      color: 'black',
+      marginLeft: "10%"
     }
   })

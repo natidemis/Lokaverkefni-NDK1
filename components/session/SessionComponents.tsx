@@ -4,6 +4,13 @@ import { TExercise, TSet } from "../../data/types";
 import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
 
+function PreviousSet({set}: {set: TSet}){
+  if(set.previousKG !== null && set.previousREPS !== null){
+    return <Text>{set.previousKG} × {set.previousREPS}</Text>
+  }else{
+    return <Text></Text>
+  }
+}
 function SetRow( { set, rowID }: {set: TSet, rowID: number}){
     const [inputKG, setInputKG] = React.useState<string>();
     const [inputReps, setInputReps] = React.useState<string>()
@@ -12,15 +19,15 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
         <View>
           <Text>{rowID}</Text>
         </View>
-        <Text>{set.previousKG} × {set.previousREPS}</Text>
+        <PreviousSet set={set}></PreviousSet>
         <TextInput
-          style= {{backgroundColor:'#808080' }}
+          style= {sessionStyle.setInput}
           keyboardType='numeric'
           onChangeText={setInputKG}
           value= {inputKG}
          />
          <TextInput
-          style= {{backgroundColor:'#808080' }}
+          style= {sessionStyle.setInput}
           keyboardType='numeric'
           onChangeText={setInputReps}
           value= {inputReps}
@@ -45,7 +52,7 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
       <React.Fragment>
         <Text style={styles.title}>{Exercise.title}</Text>
         <Header/>
-         <View style={{display: 'flex'}}>
+         <View>
           {Exercise.sets.map((set, i) => {
             return(
               <SetRow set={set} key={i} rowID={i}/>
