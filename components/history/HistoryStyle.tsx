@@ -3,22 +3,22 @@ import { BackgroundImage } from "../BackgroundImage/BackgroundImage";
 
 export const historyStyle = StyleSheet.create({
     container: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
+      flexDirection: 'column',
       top: 0,
-      padding: 30,
+      padding: 0,
+      width: '100%'
     },
     sessionHist: {
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: '#ffffff',
-      width: '150%',
+      width: '70%',
       borderRadius: 10,
       marginTop: 0,
       padding: 5,
+
       marginBottom: 15,
-      marginLeft: '10%',
+      marginLeft: '15%',
       justifyContent: 'center'
     },
     dateView: {
@@ -36,7 +36,23 @@ export const historyStyle = StyleSheet.create({
         marginTop: 10,
         marginBottom: 0,
         width: '90%',
-      }
+      },
+      exercisesList: {
+          display: 'flex',
+          flexDirection:'column',
+          justifyContent:'flex-start',
+          flex: 1,
+      },
+      exercisesSetsList: {
+        flex: 1,
+        display: 'flex',
+        flexDirection:'column',
+        justifyContent:'flex-start',
+    },
+    historySection: {
+        display: 'flex',
+        flexDirection: 'row',
+    }
   });
   
   

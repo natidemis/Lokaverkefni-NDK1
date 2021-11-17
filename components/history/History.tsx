@@ -5,21 +5,8 @@ import { Text } from 'react-native'
 import styles from "../../Styles";
 import React from "react";
 import DateComponent, { DurationComponent } from "../Misc/date";
+import { HistoryExercise, HistoryHeader, HistorySets } from "./HistoryComponents";
 
-
-const HistoryHeader = ( {session}: {session: TSession}) => {
-    return(
-        <React.Fragment>
-          <Text
-            style={[styles.title, {fontSize: 18}]}
-            numberOfLines={1}>
-            {session.title}
-          </Text>
-          <DateComponent style={historyStyle.dateView} item={session}/>
-          <DurationComponent style={historyStyle.durationView} item={session} />
-        </React.Fragment>
-    )
-}
 
 export default function HistoryComponent({sessions}: {sessions: TSession[]}){
 
@@ -34,7 +21,10 @@ export default function HistoryComponent({sessions}: {sessions: TSession[]}){
                   >
                     <View style={historyStyle.sessionHist}>
                         <HistoryHeader session={session} />
-
+                        <View style={historyStyle.historySection}>
+                            <HistoryExercise exercises={session.exercises} />
+                            <HistorySets exercises={session.exercises} />
+                        </View>
                     </View>
                   </Pressable>
                 )

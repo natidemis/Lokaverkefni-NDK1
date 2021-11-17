@@ -7,7 +7,7 @@ import HistoryComponent from '../components/history/History';
 import { dummySession } from '../data/fakedata';
 const image = require('../Images/gym.jpg')
 
-const sessions = [dummySession]
+const sessions = [dummySession, dummySession]
 const HistoryScreen = () => {
     return (
       <React.Fragment>
