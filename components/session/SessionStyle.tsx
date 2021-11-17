@@ -9,7 +9,7 @@ export const sessionStyle = StyleSheet.create({
     modalView: {
       display: 'flex',
       flexDirection: 'column',
-      width: '90%',
+      width: '95%',
       margin: 0,
       backgroundColor: "white",
       borderRadius: 20,
@@ -18,29 +18,30 @@ export const sessionStyle = StyleSheet.create({
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: 2
+        height: 1
       },
-      shadowOpacity: 0.9,
-      shadowRadius: 4,
+      shadowOpacity: 0.2,
+      shadowRadius: 1,
     },
     buttonsView: {
       display: 'flex',
-      flex: 1,
       flexDirection: 'row',
-      height: 0,
-      backgroundColor: 'red',
+      justifyContent:'space-evenly',
+      marginTop: 40,
+      width: '90%',
     },
     button: {
+      width: 100,
+      height: 40,
       borderRadius: 5,
       padding: 10,
       elevation: 2,
-      height: 30,
     },
-    buttonOpen: {
-      backgroundColor: "red",
+    buttonStart: {
+      backgroundColor: "#90EE90"
     },
     buttonClose: {
-      backgroundColor: "black",
+      backgroundColor: "#FF7F7F"
     },
     textStyle: {
       color: "white",
@@ -65,6 +66,7 @@ export const sessionStyle = StyleSheet.create({
       justifyContent: "space-around",
       width: '90%',
       marginBottom: 10,
+
     },
     exerciseStyle: {
       flex: 1,
@@ -77,6 +79,15 @@ export const sessionStyle = StyleSheet.create({
       borderRadius: 5,
       opacity: 1,
       color: 'black',
-      marginLeft: "10%"
+      marginLeft: "5%"
+    },
+
+    prevText: {
+      marginLeft: "0%",
+      marginRight: "2%",
+    },
+    rowId: {
+      marginLeft: "15%",
+      fontWeight: 'bold',
     }
   })

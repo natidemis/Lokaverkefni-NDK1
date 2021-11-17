@@ -1,16 +1,19 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
 import { TExercise, TSession as SessionType, TSet, TTemplate } from "../../data/types"
 import styles from "../../Styles"
 import { Exercise } from "../exercise/Exercise"
+import { Animations } from "../Template/TemplateModal"
 import { templateModalStyle } from "../Template/TemplateStyles"
 import ExcerciseRow from "./SessionComponents"
 import { sessionStyle } from "./SessionStyle"
 
 
 
+
 export function Session({ modalVisible, template, setSessionActivityState}: 
   {modalVisible: boolean, template: TTemplate, setSessionActivityState: Function }) {
+    const [animation, setAnimation] = useState<Animations>(Animations.none);
     //useEffect(() => { //nota til þess að loka glugga
     //  
     //})
@@ -18,7 +21,7 @@ export function Session({ modalVisible, template, setSessionActivityState}:
     //TODO: birta session glugga
   return (
     <Modal
-      animationType = "none"
+      animationType = {animation}
       visible={modalVisible}
       transparent={true}
       onRequestClose={() => {
@@ -29,20 +32,37 @@ export function Session({ modalVisible, template, setSessionActivityState}:
         <ScrollView contentContainerStyle={sessionStyle.modalView}>
           <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
           {template?.exercises.map((exercise,i) => {
-            //Exercise row ekki að birtast?
             return(
               <ExcerciseRow Exercise={exercise} key={i}/>
             )
           })}
+
+          <View style={sessionStyle.buttonsView} onLayout={
+            () => {
+              setAnimation(Animations.slide)
+            }
+          }>
+            <Pressable
+                    style={[templateModalStyle.button, templateModalStyle.buttonStart]}
+                    onPress={() => {
+                      //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+                      //TODO: SAVE when finished.
+                      setSessionActivityState(!modalVisible);
+                    }}
+                   >
+                    <Text style={sessionStyle.textStyle}>Finish</Text>
+            </Pressable>
+            <Pressable
+                    style={[sessionStyle.button, sessionStyle.buttonClose]}
+                    onPress={() => { 
+                      setSessionActivityState(!modalVisible);
+                    }}
+                  >
+                    <Text style={templateModalStyle.textStyle}>Cancel</Text>
+            </Pressable>
+          </View>
         </ScrollView>
-        <Pressable
-                style={[templateModalStyle.button, templateModalStyle.buttonClose]}
-                onPress={() => { 
-                  setSessionActivityState(!modalVisible);
-                }}
-              >
-                <Text style={templateModalStyle.textStyle}>Close</Text>
-              </Pressable>
+        
       </View>
     </Modal>
   )

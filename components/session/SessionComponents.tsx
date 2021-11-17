@@ -6,7 +6,7 @@ import { sessionStyle } from "./SessionStyle";
 
 function PreviousSet({set}: {set: TSet}){
   if(set.previousKG !== null && set.previousREPS !== null){
-    return <Text>{set.previousKG} × {set.previousREPS}</Text>
+    return <Text style={[styles.text, sessionStyle.prevText]}>{set.previousKG} × {set.previousREPS}</Text>
   }else{
     return <Text></Text>
   }
@@ -17,7 +17,7 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
     return(
       <View style={sessionStyle.exerciseSetStyle}>
         <View>
-          <Text>{rowID}</Text>
+          <Text style={sessionStyle.rowId}>{rowID}</Text>
         </View>
         <PreviousSet set={set}></PreviousSet>
         <TextInput
