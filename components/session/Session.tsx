@@ -11,8 +11,9 @@ import { sessionStyle } from "./SessionStyle"
 
 
 
-export function Session({ modalVisible, template, setSessionActivityState}: 
-  {modalVisible: boolean, template: TTemplate, setSessionActivityState: Function }) {
+export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: 
+  {modalVisible: boolean, template: TTemplate,
+     setSessionActivityState: Function, setShootConfetti: Function }) {
     const [animation, setAnimation] = useState<Animations>(Animations.none);
     //useEffect(() => { //nota til þess að loka glugga
     //  
@@ -48,6 +49,7 @@ export function Session({ modalVisible, template, setSessionActivityState}:
                       //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
                       //TODO: SAVE when finished.
                       setSessionActivityState(!modalVisible);
+                      setShootConfetti(true);
                     }}
                    >
                     <Text style={sessionStyle.textStyle}>Finish</Text>
