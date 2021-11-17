@@ -1,31 +1,42 @@
 import { StyleSheet } from "react-native";
+import { BackgroundImage } from "../BackgroundImage/BackgroundImage";
 
 export const historyStyle = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'space-between',
-      flexWrap: 'wrap',
       top: 0,
       padding: 30,
-      width: '100%'
     },
     sessionHist: {
+      display: 'flex',
+      flexDirection: 'column',
       backgroundColor: '#ffffff',
-      width: 150,
+      width: '150%',
       borderRadius: 10,
       marginTop: 0,
       padding: 5,
-      marginBottom: 15
+      marginBottom: 15,
+      marginLeft: '10%',
+      justifyContent: 'center'
     },
     dateView: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent:'space-evenly',
+      justifyContent:'flex-start',
       marginTop: 10,
       marginBottom: 0,
       width: '90%',
-    }
+    },
+    durationView: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'flex-start',
+        marginTop: 10,
+        marginBottom: 0,
+        width: '90%',
+      }
   });
   
   

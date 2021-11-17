@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10,
+    marginTop: 15,
   },
   templateContainer: {
     flex: 1,

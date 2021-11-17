@@ -41,7 +41,7 @@ function createSet(): TSet {
 export const dummySession: TSession = {
   title: 'My first session',
   date: getCurrentDate(),
-  duration: '10',
+  duration: 'HH:mm:ss',
   template: dummyTemplate('template 1'),
   exercises: [
     createRandomExercise(),
