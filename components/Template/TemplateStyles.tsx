@@ -29,7 +29,7 @@ export const templateStyle = StyleSheet.create({
     modalView: {
       display: 'flex',
       flexDirection: 'column',
-      width: '90%',
+      width: '95%',
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,

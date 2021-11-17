@@ -1,5 +1,6 @@
 // ---- Dummy
 
+import getCurrentDate from '../utils/date';
 import { TExercise, ExerciseType, TSession, TTemplate, TSet } from './types';
 
 export const dummyTemplate = (title = 'test template'): TTemplate => {
@@ -38,7 +39,7 @@ function createSet(): TSet {
 
 export const dummySession: TSession = {
   title: 'My first session',
-  date: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
+  date: getCurrentDate(),
   duration: '10',
   template: dummyTemplate('template 1'),
   exercises: [

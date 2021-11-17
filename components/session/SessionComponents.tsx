@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, View, Text } from "react-native";
+import { TextInput, View, Text, Pressable } from "react-native";
 import { TExercise, TSet } from "../../data/types";
 import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
@@ -56,10 +56,20 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
           {Exercise.sets.map((set, i) => {
             return(
               <SetRow set={set} key={i} rowID={i}/>
+
             )
           })}
         </View> 
-        
+        <View style={sessionStyle.setButtonsView}>
+        <Pressable
+                style={[sessionStyle.setButton]}
+                onPress={() => {
+                  //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+                }}
+               >
+                <Text style={sessionStyle.textStyle}>+ add set</Text>
+              </Pressable>
+        </View>
       </React.Fragment>
     )
   }

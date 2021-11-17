@@ -27,7 +27,7 @@ export default function TemplateModalComponent(
      >
        <View style={templateModalStyle.centeredView}>
          <View style={templateModalStyle.modalView}>
-           <Text style={styles.title}>{activeTemplate?.title}</Text>
+           <Text style={[styles.title, {fontSize: 25}]}>{activeTemplate?.title}</Text>
            {activeTemplate?.exercises.map((exercise, i) => {
               return(<Text style={styles.text} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
             })}

@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'grey',
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 5,
+    marginBottom: 8,
   }, 
   title: {
     color: '#000000',

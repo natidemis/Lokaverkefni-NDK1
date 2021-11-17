@@ -89,5 +89,21 @@ export const sessionStyle = StyleSheet.create({
     rowId: {
       marginLeft: "15%",
       fontWeight: 'bold',
-    }
+    },
+    setButton: {
+      width: '100%',
+      height: 25,
+      borderRadius: 5,
+      padding: 3,
+      elevation: 2,
+      backgroundColor: "black",
+    },
+    setButtonsView: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:'space-evenly',
+      marginTop: 10,
+      marginBottom: 10,
+      width: '90%',
+    },
   })
