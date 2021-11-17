@@ -4,7 +4,6 @@ import React from "react";
 import { TSession, TTemplate } from "../../data/types";
 import styles from "../../Styles";
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
-import { templateStyle } from "../Template/TemplateStyles";
 
 
 export default function DateComponent({item, style}:{item: TTemplate | TSession, style: StyleProp<ViewStyle>}){

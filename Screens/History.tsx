@@ -1,11 +1,10 @@
-import {ImageBackground, Button, Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
 import React from 'react';
 import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 import HistoryComponent from '../components/history/History';
 import { dummySession } from '../data/fakedata';
-const image = require('../Images/gym.jpg')
 
 const sessions = [dummySession, dummySession]
 const HistoryScreen = () => {

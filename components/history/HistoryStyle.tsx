@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { BackgroundImage } from "../BackgroundImage/BackgroundImage";
 
 export const historyStyle = StyleSheet.create({
     container: {

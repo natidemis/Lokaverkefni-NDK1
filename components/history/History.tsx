@@ -1,10 +1,7 @@
 import { Pressable, ScrollView, View } from "react-native";
 import { TSession } from "../../data/types";
 import { historyStyle } from "./HistoryStyle";
-import { Text } from 'react-native'
-import styles from "../../Styles";
 import React from "react";
-import DateComponent, { DurationComponent } from "../Misc/date";
 import { HistoryExercise, HistoryHeader, HistorySets } from "./HistoryComponents";
 
 
