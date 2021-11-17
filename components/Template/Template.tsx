@@ -1,10 +1,11 @@
 import React, { useState } from "react"
-import { Pressable, ScrollView, Text } from "react-native"
+import { Pressable, ScrollView, Text, View } from "react-native"
 import { TTemplate } from "../../data/types"
 import { templateStyle} from "./TemplateStyles"
 import styles from "../../Styles"
 import { dummySession } from "../../data/fakedata"
 import TemplateModalComponent from "./TemplateModal"
+import { AntDesign } from '@expo/vector-icons'; 
 
 const sessions = [dummySession]; //Most "recent" data for our template
 
@@ -39,13 +40,18 @@ export default function TemplateView({
             }}>
               <ScrollView style={templateStyle.template} key={i}>
                 <Text
-                  style={styles.title}
+                  style={[styles.title, {fontSize: 18}]}
                   numberOfLines={1}>
                   {template.title}
                 </Text>
                 {template.exercises.map((exercise, j) => {
                   return (<Text key={j} style={styles.text} numberOfLines={1}>{exercise.title}</Text>)
                 })}
+                {template.date? 
+                (<View style = {templateStyle.dateView}>
+                  <AntDesign name="clockcircle" size={20} color="grey" style={{bottom: 5,marginLeft: 10}}/>
+                   <Text style={styles.textDate}>{template.date}</Text>
+               </View>) : null}
               </ScrollView>
             </Pressable>
           )

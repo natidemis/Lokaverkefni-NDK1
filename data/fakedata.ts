@@ -6,6 +6,7 @@ import { TExercise, ExerciseType, TSession, TTemplate, TSet } from './types';
 export const dummyTemplate = (title = 'test template'): TTemplate => {
   return {
     title,
+    date: getCurrentDate(),
     exercises: [
       createRandomExercise(),
       createRandomExercise(),

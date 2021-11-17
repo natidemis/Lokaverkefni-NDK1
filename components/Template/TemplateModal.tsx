@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Modal, Pressable, View, Text } from "react-native";
 import { TTemplate } from "../../data/types";
 import styles from "../../Styles";
-import { templateModalStyle } from "./TemplateStyles";
+import { templateModalStyle, templateStyle } from "./TemplateStyles";
+import { AntDesign } from '@expo/vector-icons'; 
 
 export enum Animations {
   slide = "slide",
@@ -28,8 +29,17 @@ export default function TemplateModalComponent(
        <View style={templateModalStyle.centeredView}>
          <View style={templateModalStyle.modalView}>
            <Text style={[styles.title, {fontSize: 25}]}>{activeTemplate?.title}</Text>
+           {activeTemplate?.date? 
+                (<View style = {templateModalStyle.dateView}>
+                    <AntDesign
+                      name="clockcircle"
+                      size={20} color="grey"
+                      style={{bottom: 5,marginLeft: 0}}
+                    />
+                   <Text style={styles.textDate}>{activeTemplate.date}</Text>
+               </View>) : <Text/>}
            {activeTemplate?.exercises.map((exercise, i) => {
-              return(<Text style={styles.text} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
+              return(<Text style={[styles.text, {color: 'black'}]} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
             })}
             <View style={templateModalStyle.buttonsView}
               onLayout={(event) => {

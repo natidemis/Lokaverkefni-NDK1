@@ -12,12 +12,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: 'grey',
-    fontSize: 14,
+    color: 'black',
+    fontSize: 13,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 8,
-  }, 
+  },
+  textDate: {
+    fontWeight: 'bold',
+    color: 'grey',
+    fontSize: 8,
+    textAlign: 'right', 
+    marginLeft: 10
+  },
   title: {
     color: '#000000',
     fontSize: 15,

@@ -64,6 +64,7 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
         <Pressable
                 style={[sessionStyle.setButton]}
                 onPress={() => {
+                  //TODO: create new set on click.
                   //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
                 }}
                >

@@ -14,6 +14,6 @@ export default function getCurrentDate() : string{
     }
 
     var dateStr: string = output;
-    var cd: string = getDayName(dateStr, "nl-NL");
-    return cd + ', ' + dateStr.split(',')[0]
+    var cd: string = getDayName(dateStr, "en-EN");
+    return cd + ', ' + dateStr.split(',')[0].replace(/\n/g, ' ')
 }

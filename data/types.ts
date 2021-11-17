@@ -22,6 +22,7 @@ export type TExercise = {
 
 export type TTemplate = {
   title: string
+  date?: string
   exercises: TExercise[]
 }
 

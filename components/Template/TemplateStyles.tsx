@@ -6,16 +6,26 @@ export const templateStyle = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
-      top: 50,
+      top: 0,
       padding: 30,
+      width: '100%'
     },
     template: {
       backgroundColor: '#ffffff',
       width: 150,
       borderRadius: 10,
-      marginTop: 15,
-      padding: 20,
+      marginTop: 0,
+      padding: 5,
+      marginBottom: 15
     },
+    dateView: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent:'space-evenly',
+      marginTop: 10,
+      marginBottom: 0,
+      width: '90%',
+    }
   });
   
   
@@ -73,5 +83,11 @@ export const templateStyle = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
-    }
+    },
+    dateView: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginTop: 0,
+      marginBottom: 10,
+    },
   })
