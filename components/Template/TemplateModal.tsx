@@ -5,6 +5,7 @@ import styles from "../../Styles";
 import { templateModalStyle, templateStyle } from "./TemplateStyles";
 import { AntDesign } from '@expo/vector-icons'; 
 import TemplateModalButtons from "./TemplateButtons";
+import DateComponent from "../Misc/date";
 
 export enum Animations {
   slide = "slide",
@@ -31,15 +32,7 @@ export default function TemplateModalComponent(
        <View style={templateModalStyle.centeredView}>
          <View style={templateModalStyle.modalView}>
            <Text style={[styles.title, {fontSize: 25}]}>{activeTemplate?.title}</Text>
-           {activeTemplate?.date? 
-                (<View style = {templateModalStyle.dateView}>
-                    <AntDesign
-                      name="clockcircle"
-                      size={20} color="grey"
-                      style={{bottom: 5,marginLeft: 0}}
-                    />
-                   <Text style={styles.textDate}>{activeTemplate.date}</Text>
-               </View>) : <Text/>}
+           <DateComponent item={activeTemplate}/>
            {activeTemplate?.exercises.map((exercise, i) => {
               return(<Text style={[styles.text, {color: 'black'}]} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
             })}

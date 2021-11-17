@@ -5,7 +5,7 @@ import { templateStyle} from "./TemplateStyles"
 import styles from "../../Styles"
 import { dummySession } from "../../data/fakedata"
 import TemplateModalComponent from "./TemplateModal"
-import { AntDesign } from '@expo/vector-icons'; 
+import DateComponent from "../Misc/date"
 
 const sessions = [dummySession]; //Most "recent" data for our template
 
@@ -47,11 +47,7 @@ export default function TemplateView({
                 {template.exercises.map((exercise, j) => {
                   return (<Text key={j} style={styles.text} numberOfLines={1}>{exercise.title}</Text>)
                 })}
-                {template.date? 
-                (<View style = {templateStyle.dateView}>
-                  <AntDesign name="clockcircle" size={20} color="grey" style={{bottom: 5,marginLeft: 10}}/>
-                   <Text style={styles.textDate}>{template.date}</Text>
-               </View>) : null}
+                <DateComponent item={template}></DateComponent>
               </ScrollView>
             </Pressable>
           )
