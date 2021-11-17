@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import { Modal, Pressable, View, Text } from "react-native";
+import { Modal, View, Text } from "react-native";
 import { TTemplate } from "../../data/types";
 import styles from "../../Styles";
 import { templateModalStyle, templateStyle } from "./TemplateStyles";
 import { AntDesign } from '@expo/vector-icons'; 
+import TemplateModalButtons from "./TemplateButtons";
 
 export enum Animations {
   slide = "slide",
   none = "none"
 }
+
+
+
 export default function TemplateModalComponent(
   {modalVisible, activeTemplate, onChange}:
    {modalVisible: boolean, activeTemplate: TTemplate, onChange: Function}) {
  
     const [animation, setAnimation] = useState<Animations>(Animations.slide);
-    //useEffect(() => {
-    //  console.log("here")
-    //},[animation]);
+
     return(
      <Modal
        animationType={animation}
@@ -41,32 +43,12 @@ export default function TemplateModalComponent(
            {activeTemplate?.exercises.map((exercise, i) => {
               return(<Text style={[styles.text, {color: 'black'}]} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
             })}
-            <View style={templateModalStyle.buttonsView}
-              onLayout={(event) => {
-                setAnimation(Animations.none);
-              }}
-            >
-              <Pressable
-                style={[templateModalStyle.button, templateModalStyle.buttonStart]}
-                onPress={() => {
-                  //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
-                  onChange(!modalVisible, activeTemplate, true);
-                  setAnimation(Animations.slide);
-                }}
-               >
-                <Text style={templateModalStyle.textStyle}>Start</Text>
-              </Pressable>
-              <Pressable
-                style={[templateModalStyle.button, templateModalStyle.buttonClose]}
-                onPress={() => { 
-                  onChange(!modalVisible);
-
-                  setAnimation(Animations.slide);
-                }}
-              >
-                <Text style={templateModalStyle.textStyle}>Close</Text>
-              </Pressable>
-            </View>
+            <TemplateModalButtons
+              onChange={onChange}
+              activeTemplate={activeTemplate}
+              setAnimation={setAnimation}
+              modalVisible={modalVisible}
+            />
          </View>
        </View>
      </Modal>
