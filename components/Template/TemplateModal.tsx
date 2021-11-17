@@ -6,11 +6,7 @@ import { templateModalStyle, templateStyle } from "./TemplateStyles";
 import { AntDesign } from '@expo/vector-icons'; 
 import TemplateModalButtons from "./TemplateButtons";
 import DateComponent from "../Misc/date";
-
-export enum Animations {
-  slide = "slide",
-  none = "none"
-}
+import { Animations } from "../Misc/animations";
 
 
 

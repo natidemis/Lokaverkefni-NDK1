@@ -3,7 +3,7 @@ import { Modal, Pressable, ScrollView, Text, TextInput, View } from "react-nativ
 import { TExercise, TSession as SessionType, TSet, TTemplate } from "../../data/types"
 import styles from "../../Styles"
 import { Exercise } from "../exercise/Exercise"
-import { Animations } from "../Template/TemplateModal"
+import { Animations } from "../Misc/animations"
 import { templateModalStyle } from "../Template/TemplateStyles"
 import ExcerciseRow from "./SessionComponents"
 import { sessionStyle } from "./SessionStyle"

@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, View, Text } from "react-native";
 import { TTemplate } from "../../data/types";
-import { Animations } from "./TemplateModal";
+import { Animations } from "../Misc/animations";
 import { templateModalStyle } from "./TemplateStyles";
 
 export default function TemplateModalButtons ({setAnimation,
