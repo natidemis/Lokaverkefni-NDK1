@@ -9,6 +9,7 @@ import TemplateView from '../components/Template/Template';
 import {TTemplate } from '../data/types';
 import ConfettiCannon from 'react-native-confetti-cannon';
 
+const dt = dummyTemplate('dummy')
 const Sessions = () => {
     const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
     const [isSessionActive, setSessionActivityState] = useState<boolean>(false);

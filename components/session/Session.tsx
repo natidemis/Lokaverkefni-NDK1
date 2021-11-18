@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
 import { ExerciseType, TExercise, TTemplate } from "../../data/types"
 import styles from "../../Styles"
@@ -9,20 +9,31 @@ import { sessionStyle } from "./SessionStyle"
 
 
 
-export type ExercisesWkey = {exercise: TExercise, key: number}
+export type ExercisesWkey = {exercise: TExercise, key: string}
 
 export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: 
   {modalVisible: boolean, template: TTemplate,
      setSessionActivityState: Function, setShootConfetti: Function }) {
     const [animation, setAnimation] = useState<Animations>(Animations.none);
-    const [exercises, _] = useState<ExercisesWkey[]>(
+    const [exercises, setExercises] = useState<ExercisesWkey[]>(
       template?.exercises.map((exercise,i) =>(
         {
           exercise: exercise,
-          key: i,
+          key: `${i}`,
         }
       ))
     )
+
+    useEffect(() => {
+      setExercises(
+        template?.exercises.map((exercise,i) =>(
+          {
+            exercise: exercise,
+            key: `${i}`,
+          }
+        ))
+      )
+    },[template])
 
     const SessionButtons = () => {
       return(
@@ -64,25 +75,26 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
       }}
     >
 
-      
+    <View style= {sessionStyle.centeredView}>
       <View style={sessionStyle.modalView}>
         {/* 
         Flat list ekki að virka á exercise row?
         */}
-      {template? (
+        {template? (
         <FlatList
-        data={exercises}
-        renderItem={(item) => {
-          console.log("Exercise")
-          return (
-            <ExcerciseRow Exercise={item.item.exercise} key={item.index} />
-          )
-        }}
-        ListHeaderComponent={
-          <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
-        }
-        ListFooterComponent={SessionButtons}
-        />) : <React.Fragment></React.Fragment>}
+          data={exercises}
+          renderItem={(item) => {
+            return (
+              <ExcerciseRow Exercise={item.item.exercise} key={item.item.key} />
+            )
+          }}
+          keyExtractor={item => item.key}
+          ListHeaderComponent={
+            <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
+          }
+          ListFooterComponent={SessionButtons}
+          />) : <React.Fragment></React.Fragment>}
+        </View>
       </View>
     </Modal>
   )

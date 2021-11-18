@@ -5,10 +5,18 @@ import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { templateModalStyle, templateStyle } from "../Template/TemplateStyles";
+import { EvilIcons } from '@expo/vector-icons';
 
 function PreviousSet({set}: {set: TSet}){
   if(set.previousKG !== null && set.previousREPS !== null){
-    return <Text style={[styles.text, sessionStyle.prevText]}>{set.previousKG} × {set.previousREPS}</Text>
+    return (
+      <View style={sessionStyle.prevTextView}>
+        <Text
+          style={[styles.text, sessionStyle.prevText]}>
+            {set.previousKG} × {set.previousREPS}
+          </Text>
+      </View>
+    )
   }else{
     return <Text></Text>
   }
@@ -19,7 +27,7 @@ function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
     return(
       <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
         <React.Fragment>
-          <View>
+          <View style= {sessionStyle.rowIdView}>
             <Text style={sessionStyle.rowId}>{set.index}</Text>
           </View>
           <PreviousSet set={set.item.data}></PreviousSet>
@@ -36,6 +44,7 @@ function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
            value= {inputReps}
           />
         </React.Fragment>
+        
       </TouchableHighlight>
     )
   }
@@ -73,6 +82,7 @@ function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
             )
           }) */}
           <SwipeListView
+            style={{width:'100%'}}
             data={exerciseSets}
             renderItem={(data, rowMap) => {
               return (
@@ -83,13 +93,15 @@ function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
             }}
             renderHiddenItem={(data, rowMap) => {
               return(
-                <Pressable
-                  style={[templateModalStyle.button, templateModalStyle.buttonClose]}
-                  onPress={() => { 
-                  }}
-                >
-                  <Text style={templateModalStyle.textStyle}>Close</Text>
-                </Pressable>
+                <View style= {sessionStyle.hiddenButtonView}>
+                  <Pressable
+                    style={[sessionStyle.hiddenButton]}
+                    onPress={() => { 
+                    }}
+                  >
+                    <EvilIcons style={{fontWeight: 'bold'}} name="trash" size={24} color="black" />
+                  </Pressable>
+                </View>
               )
             }}
             leftOpenValue={75}
