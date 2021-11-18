@@ -12,7 +12,18 @@ export const ExerciseStyles = StyleSheet.create({
   alphabetList: {
     display: 'flex',
     flexDirection: 'row',
-    width: '95%',
+    width: '105%',
+    margin: 0,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 0,
+    alignItems: "baseline",
+
+  },
+  modalView: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '85%',
     margin: 0,
     backgroundColor: "white",
     borderRadius: 20,
@@ -57,5 +68,25 @@ export const ExerciseStyles = StyleSheet.create({
       borderBottomWidth: 1,
       marginBottom: 5,
   },
+  button: {
+    width: 100,
+    height: 40,
+    borderRadius: 5,
+    paddingTop: 8,
+    backgroundColor: "#90EE90"
+  },
 
+  btnTextStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 17,
+    height: 30,
+  },
+  startBtnView: {
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'flex-start'
+  }
 });
