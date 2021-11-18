@@ -51,6 +51,7 @@ export const ExerciseStyles = StyleSheet.create({
     backgroundColor: '#EFEFEF',
     paddingTop: 7,
     height: 30,
+    marginBottom: 5,
   },
   title: {
     color: '#000000',
