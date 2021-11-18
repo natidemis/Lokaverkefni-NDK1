@@ -35,6 +35,8 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
       )
     },[template])
 
+
+    //TODO: take the functions in as arguments and move this to "SessionRenderComponents.tsx"
     const SessionButtons = () => {
       return(
         <View style={sessionStyle.buttonsView} onLayout={
