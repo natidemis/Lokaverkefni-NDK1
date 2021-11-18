@@ -46,15 +46,15 @@ import { RenderSet, SessionHiddenButton } from "./SessionRenderComponents";
 
         </View> 
         <View style={sessionStyle.setButtonsView}>
-        <Pressable
-                style={[sessionStyle.setButton]}
-                onPress={() => {
-                  //TODO: create new set on click.
-                  //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
-                }}
-               >
-                <Text style={sessionStyle.textStyle}>+ set</Text>
-              </Pressable>
+          <Pressable
+            style={[sessionStyle.setButton]}
+            onPress={() => {
+              //TODO: create new set on click.
+              //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+            }}
+           >
+            <Text style={sessionStyle.textStyle}>+ set</Text>
+          </Pressable>
         </View>
       </React.Fragment>
     )

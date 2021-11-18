@@ -11,7 +11,6 @@ const HistoryScreen = () => {
     return (
       <React.Fragment>
         <BackgroundImage>
-          <Text style={styles.text}>History</Text>
           <HistoryComponent sessions={sessions}/>
           <StatusBar style="auto" />      
         </BackgroundImage>

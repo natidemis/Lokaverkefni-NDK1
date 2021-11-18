@@ -19,9 +19,9 @@ export const dummyTemplate = (title = 'test template'): TTemplate => {
   };
 };
 
-function createRandomExercise(): TExercise {
+function createRandomExercise(title?: string): TExercise {
   return {
-    title: 'Réttstöðulyfta',
+    title: title || 'Réttstöðulyfta',
     type: ExerciseType.barbell,
     sets: [createSet(), createSet()],
   };
@@ -37,6 +37,14 @@ function createSet(): TSet {
     previousREPS: 10
   };
 }
+
+export const dummyExercises = [
+  createRandomExercise(),
+  createRandomExercise('Squats'),
+  createRandomExercise('Deadlift'),
+  createRandomExercise('Bench press'),
+  createRandomExercise('Incline Bench press'),
+  createRandomExercise('Pull ups'),]
 
 export const dummySession: TSession = {
   title: 'My first session',

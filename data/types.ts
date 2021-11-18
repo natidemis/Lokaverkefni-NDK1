@@ -17,7 +17,7 @@ export type TSet = {
 export type TExercise = {
   title: string
   type: ExerciseType
-  sets: TSet[]
+  sets?: TSet[]
 }
 
 export type TTemplate = {
