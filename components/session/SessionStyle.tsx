@@ -64,8 +64,10 @@ export const sessionStyle = StyleSheet.create({
       alignSelf: 'stretch',
       flexDirection: 'row',
       justifyContent: "space-around",
-      width: '90%',
+      width: '95%',
       marginBottom: 10,
+      height: 40,
+      backgroundColor: '#ffffff',
 
     },
     exerciseStyle: {
@@ -74,21 +76,39 @@ export const sessionStyle = StyleSheet.create({
     },
     setInput: {
       backgroundColor:'#E1E1E1',
-      width: 25,
-      height: 25,
+      width: 40,
+      height: 40,
       borderRadius: 5,
       opacity: 1,
       color: 'black',
-      marginLeft: "5%"
+      marginLeft: "10%",
+      padding: 5,
     },
 
     prevText: {
-      marginLeft: "0%",
+      marginLeft: "15%",
       marginRight: "2%",
+      fontSize: 17,
+    },
+    prevTextView: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      paddingTop: '3%',
     },
     rowId: {
       marginLeft: "15%",
       fontWeight: 'bold',
+      fontSize: 17,
+    },
+    rowIdView: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
     },
     setButton: {
       width: '100%',
@@ -104,6 +124,23 @@ export const sessionStyle = StyleSheet.create({
       justifyContent:'space-evenly',
       marginTop: 10,
       marginBottom: 10,
-      width: '90%',
+      width: '99%',
     },
+    hiddenButton: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      width: '60%',
+      height: 39,
+      borderRadius: 0,
+      padding: 10,
+      elevation: 2,
+      backgroundColor: "#FF7F7F",
+    },
+    hiddenButtonView: {
+      display: 'flex',
+      flexDirection: 'row',
+      width: '90%',
+      justifyContent: 'flex-end',
+    }
   })

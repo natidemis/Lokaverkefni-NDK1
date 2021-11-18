@@ -1,38 +1,51 @@
-import React from "react";
-import { TextInput, View, Text, Pressable } from "react-native";
+import React, { useState } from "react";
+import { TextInput, View, Text, Pressable, ListRenderItemInfo, Touchable, TouchableHighlight } from "react-native";
 import { TExercise, TSet } from "../../data/types";
 import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
+import { SwipeListView } from 'react-native-swipe-list-view';
+import { templateModalStyle, templateStyle } from "../Template/TemplateStyles";
+import { EvilIcons } from '@expo/vector-icons';
 
 function PreviousSet({set}: {set: TSet}){
   if(set.previousKG !== null && set.previousREPS !== null){
-    return <Text style={[styles.text, sessionStyle.prevText]}>{set.previousKG} × {set.previousREPS}</Text>
+    return (
+      <View style={sessionStyle.prevTextView}>
+        <Text
+          style={[styles.text, sessionStyle.prevText]}>
+            {set.previousKG} × {set.previousREPS}
+          </Text>
+      </View>
+    )
   }else{
     return <Text></Text>
   }
 }
-function SetRow( { set, rowID }: {set: TSet, rowID: number}){
+function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
     const [inputKG, setInputKG] = React.useState<string>();
     const [inputReps, setInputReps] = React.useState<string>()
     return(
-      <View style={sessionStyle.exerciseSetStyle}>
-        <View>
-          <Text style={sessionStyle.rowId}>{rowID}</Text>
-        </View>
-        <PreviousSet set={set}></PreviousSet>
-        <TextInput
-          style= {sessionStyle.setInput}
-          keyboardType='numeric'
-          onChangeText={setInputKG}
-          value= {inputKG}
+      <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
+        <React.Fragment>
+          <View style= {sessionStyle.rowIdView}>
+            <Text style={sessionStyle.rowId}>{set.index}</Text>
+          </View>
+          <PreviousSet set={set.item.data}></PreviousSet>
+          <TextInput
+            style= {sessionStyle.setInput}
+            keyboardType='numeric'
+            onChangeText={setInputKG}
+            value= {inputKG}
          />
          <TextInput
-          style= {sessionStyle.setInput}
-          keyboardType='numeric'
-          onChangeText={setInputReps}
-          value= {inputReps}
-         />
-      </View>
+           style= {sessionStyle.setInput}
+           keyboardType='numeric'
+           onChangeText={setInputReps}
+           value= {inputReps}
+          />
+        </React.Fragment>
+        
+      </TouchableHighlight>
     )
   }
   
@@ -47,18 +60,54 @@ function SetRow( { set, rowID }: {set: TSet, rowID: number}){
     )
   }
   
+  type TSetWithId = {data: TSet, key: number}
   export default function ExcerciseRow( { Exercise }: { Exercise: TExercise}){
+    const [exerciseSets, setExerciseSets] = useState<TSetWithId[]>(
+      Exercise.sets.map((set,i) => (
+        {
+          data: set,
+          key: i
+        }
+      ))
+    )
     return(
       <React.Fragment>
         <Text style={styles.title}>{Exercise.title}</Text>
         <Header/>
          <View>
-          {Exercise.sets.map((set, i) => {
+          {/*Exercise.sets.map((set, i) => {
             return(
               <SetRow set={set} key={i} rowID={i}/>
 
             )
-          })}
+          }) */}
+          <SwipeListView
+            style={{width:'100%'}}
+            data={exerciseSets}
+            renderItem={(data, rowMap) => {
+              return (
+                  <TouchableHighlight>
+                    <SetRow set={data} />
+                  </TouchableHighlight>
+              )
+            }}
+            renderHiddenItem={(data, rowMap) => {
+              return(
+                <View style= {sessionStyle.hiddenButtonView}>
+                  <Pressable
+                    style={[sessionStyle.hiddenButton]}
+                    onPress={() => { 
+                    }}
+                  >
+                    <EvilIcons style={{fontWeight: 'bold'}} name="trash" size={24} color="black" />
+                  </Pressable>
+                </View>
+              )
+            }}
+            leftOpenValue={75}
+            rightOpenValue={-150}
+            />
+
         </View> 
         <View style={sessionStyle.setButtonsView}>
         <Pressable
