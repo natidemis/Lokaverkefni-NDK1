@@ -16,6 +16,7 @@ const Tabs = () => {
     var activeTintColor = 'black'
   return (
       <Tab.Navigator
+          initialRouteName={'Workout'}
           screenOptions={{
               tabBarStyle:{
                   position: 'absolute',
