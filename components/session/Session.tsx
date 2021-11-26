@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { Dispatch, useEffect, useState } from "react"
 import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
-import { ExerciseType, TExercise, TTemplate } from "../../data/types"
+import { ExerciseType, TExercise, TSet, TTemplate } from "../../data/types"
 import styles from "../../Styles"
 import { Animations } from "../Misc/animations"
 import { templateModalStyle } from "../Template/TemplateStyles"
@@ -9,7 +9,11 @@ import { sessionStyle } from "./SessionStyle"
 
 
 
-export type ExercisesWkey = {exercise: TExercise, key: string}
+export type ExercisesWkey = {
+  exercise: TExercise, 
+  key: string,
+  //stateSet: [TSet[], Dispatch<React.SetStateAction<TSet[]>>]
+}
 
 export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: 
   {modalVisible: boolean, template: TTemplate,
@@ -20,6 +24,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
         {
           exercise: exercise,
           key: `${i}`,
+          //stateSet: useState<TSet[]>(exercise.sets)
         }
       ))
     )
@@ -30,6 +35,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
           {
             exercise: exercise,
             key: `${i}`,
+            //stateSet: useState<TSet[]>(exercise.sets)
           }
         ))
       )
