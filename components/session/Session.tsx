@@ -5,12 +5,14 @@ import styles from "../../Styles"
 import { Animations } from "../Misc/animations"
 import { templateModalStyle } from "../Template/TemplateStyles"
 import ExcerciseRow from "./SessionComponents"
+import { TSetWithId } from "./SessionRenderComponents"
 import { sessionStyle } from "./SessionStyle"
 
 
 
 export type ExercisesWkey = {
-  exercise: TExercise, 
+  title: string
+  exerciseSets: TSetWithId[], 
   key: string,
   //stateSet: [TSet[], Dispatch<React.SetStateAction<TSet[]>>]
 }
@@ -22,7 +24,16 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
     const [exercises, setExercises] = useState<ExercisesWkey[]>(
       template?.exercises.map((exercise,i) =>(
         {
-          exercise: exercise,
+          title: exercise.title,
+          exerciseSets: exercise.sets.map((set,j) => (
+            {
+              data: {
+                weightUS: useState(set.weight),
+                repsUS: useState(set.reps)
+              },
+              key: `${j}`,
+            }
+          )),
           key: `${i}`,
           //stateSet: useState<TSet[]>(exercise.sets)
         }
@@ -33,7 +44,16 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
       setExercises(
         template?.exercises.map((exercise,i) =>(
           {
-            exercise: exercise,
+            title: exercise.title,
+            exerciseSets: exercise.sets.map((set,j) => (
+              {
+                data: {
+                  weightUS: useState(set.weight),
+                  repsUS: useState(set.reps)
+                },
+                key: `${j}`,
+              }
+            )),
             key: `${i}`,
             //stateSet: useState<TSet[]>(exercise.sets)
           }
@@ -57,6 +77,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
                     //TODO: SAVE when finished.
                     setSessionActivityState(!modalVisible);
                     setShootConfetti(true);
+                    console.log(exercises)
                   }}
                  >
                   <Text style={sessionStyle.textStyle}>Finish</Text>
@@ -93,7 +114,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
           data={exercises}
           renderItem={(item) => {
             return (
-              <ExcerciseRow Exercise={item.item.exercise} key={item.item.key} />
+              <ExcerciseRow exerciseSets={item.item.exerciseSets} title={item.item.title} key={item.item.key} />
             )
           }}
           keyExtractor={item => item.key}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableHighlight, TextInput, ListRenderItemInfo } from "react-native";
 import { TExercise, TSet } from "../../data/types";
 import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { RenderSet, SessionHiddenButton } from "./SessionRenderComponents";
+import { PreviousSet, SessionHiddenButton, SetRow, TSetWithId } from "./SessionRenderComponents";
 
 
   
@@ -18,27 +18,26 @@ import { RenderSet, SessionHiddenButton } from "./SessionRenderComponents";
       </View>
     )
   }
+
+  type Props = { exerciseSets: TSetWithId[], title: string}
+
+  export default function ExcerciseRow( { exerciseSets, title }: Props){
   
-  type TSetWithId = {data: TSet, key: string}
-  export default function ExcerciseRow( { Exercise }: { Exercise: TExercise}){
-    const [exerciseSets, _] = useState<TSetWithId[]>(
-      Exercise.sets.map((set,i) => (
-        {
-          data: set,
-          key: `${i}`
-        }
-      ))
-    )
     return(
       <React.Fragment>
-        <Text style={styles.title}>{Exercise.title}</Text>
+        <Text style={styles.title}>{title}</Text>
         <Header/>
          <View>
 
           <SwipeListView
             style={{width:'100%'}}
             data={exerciseSets}
-            renderItem={RenderSet}
+            renderItem={(data, rowMap) => {
+              return (
+                  <TouchableHighlight>
+                    <SetRow set={data} />
+                  </TouchableHighlight>
+              )}}
             renderHiddenItem={SessionHiddenButton}
             leftOpenValue={75}
             rightOpenValue={-150}

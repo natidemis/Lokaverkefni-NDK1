@@ -1,14 +1,14 @@
-import React from "react"
+import React, { Dispatch, SetStateAction } from "react"
 import { ListRenderItemInfo, Pressable, TouchableHighlight, View, Text, TextInput} from "react-native"
 import { sessionStyle } from "./SessionStyle"
 import { EvilIcons } from '@expo/vector-icons';
 import { TSet } from "../../data/types";
 import styles from "../../Styles";
 
-type TSetWithId = {data: TSet, key: number}
-
-
-
+export type TSetWithId = {data: {
+  weightUS: [string, React.Dispatch<React.SetStateAction<string>>],
+  repsUS: [string, React.Dispatch<React.SetStateAction<string>>]
+}, key: string}
 export const SessionHiddenButton = (data, rowMap) => {
   return(
     <View style= {sessionStyle.hiddenButtonView}>
@@ -24,36 +24,36 @@ export const SessionHiddenButton = (data, rowMap) => {
 }
 
 
-export const RenderSet = (data, rowMap) => {
-  return (
-      <TouchableHighlight>
-        <SetRow set={data} />
-      </TouchableHighlight>
-  )
-}
+//export const RenderSet = (data, rowMap) => {
+//  return (
+//      <TouchableHighlight>
+//        <SetRow set={data} />
+//      </TouchableHighlight>
+//  )
+//}
 
 
-function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
-  const [inputKG, setInputKG] = React.useState<string>();
-  const [inputReps, setInputReps] = React.useState<string>()
+export function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
+  const [weight, setWeight] = set.item.data.weightUS;
+  const [reps, setReps] = set.item.data.repsUS;
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
       <React.Fragment>
         <View style= {sessionStyle.rowIdView}>
           <Text style={sessionStyle.rowId}>{set.index}</Text>
         </View>
-        <PreviousSet set={set.item.data}></PreviousSet>
+        <PreviousSet reps={`${reps}`} weight={`${weight}`}></PreviousSet>
         <TextInput
           style= {sessionStyle.setInput}
           keyboardType='numeric'
-          onChangeText={setInputKG}
-          value= {inputKG}
+          onChangeText={setWeight}
+          value= {weight}
        />
        <TextInput
          style= {sessionStyle.setInput}
          keyboardType='numeric'
-         onChangeText={setInputReps}
-         value= {inputReps}
+         onChangeText={setReps}
+         value= {reps}
         />
       </React.Fragment>
       
@@ -62,14 +62,18 @@ function SetRow( { set }: {set: ListRenderItemInfo<TSetWithId>}){
 }
 
 
+type Props =  {
+  weight: string,
+  reps: string;
+}
+export function PreviousSet({weight, reps }: Props){
 
-function PreviousSet({set}: {set: TSet}){
-  if(set.previousKG !== null && set.previousREPS !== null){
+  if(reps && weight){
     return (
       <View style={sessionStyle.prevTextView}>
         <Text
           style={[styles.text, sessionStyle.prevText]}>
-            {set.previousKG} × {set.previousREPS}
+            {reps} × {weight}
           </Text>
       </View>
     )
