@@ -1,11 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { ListRenderItemInfo, Pressable, TouchableHighlight, View, Text, TextInput} from "react-native"
 import { sessionStyle } from "./SessionStyle"
 import { EvilIcons } from '@expo/vector-icons';
 import { TSet, TTemplate } from "../../data/types";
 import styles from "../../Styles";
 import { data } from "./Session";
-
+import { Animations } from "../Misc/animations";
+import { templateModalStyle } from "../Template/TemplateStyles";
+import { DataContext } from "./DataContext";
 
 export const SessionHiddenButton = () => {
   return(
@@ -25,35 +27,34 @@ export const SessionHiddenButton = () => {
 
 
 type Props = {
-  data: {
+  info: {
     set: TSet, 
-    idx: number, 
-    inputData: TTemplate 
-    setInputData: React.Dispatch<React.SetStateAction<TTemplate>>,
     exerciseRowIndex: number,
   }
 }
-export function SetRow( {data}: Props){
-  const {set, idx, inputData, setInputData, exerciseRowIndex} = data
+export function SetRow( {info}: Props){
+  
+  const {set, exerciseRowIndex} = info
+  const {data, setData} = useContext(DataContext) 
   const [color, setColor] = useState<{weights: string, kg: string}>({weights: 'grey', kg: 'grey'})
   const [inputWeight, setInputWeight] = useState<string>(
-    inputData.exercises[exerciseRowIndex].sets[idx].previousKG)
+    data.exercises[exerciseRowIndex].sets[set.id].previousKG)
   const [inputReps, setInputReps] = useState<string>(
-    inputData.exercises[exerciseRowIndex].sets[idx].previousREPS
+    data.exercises[exerciseRowIndex].sets[set.id].previousREPS
   )
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
       <React.Fragment>
         <View style= {sessionStyle.rowIdView}>
-          <Text style={sessionStyle.rowId}>{idx}</Text>
+          <Text style={sessionStyle.rowId}>{set.id}</Text>
         </View>
         <PreviousSet set={set}></PreviousSet>
         <TextInput
           style= {[sessionStyle.setInput,{color: color.weights} ]}
           keyboardType='numeric'
           onChangeText={text => {
-            inputData.exercises[exerciseRowIndex].sets[idx].weight = text
-            setInputData(inputData)
+            data.exercises[exerciseRowIndex].sets[set.id].weight = text
+            setData(data)
             setInputWeight(text)
             color.weights = 'black'
             setColor(color)
@@ -64,8 +65,8 @@ export function SetRow( {data}: Props){
          style= {[sessionStyle.setInput,color.kg? {color: 'grey'} : null]}
          keyboardType='numeric'
          onChangeText={text => {
-          inputData.exercises[exerciseRowIndex].sets[idx].reps = text
-          setInputData(inputData)
+          data.exercises[exerciseRowIndex].sets[set.id].reps = text
+          setData(data)
           setInputReps(text)
           color.kg = 'black'
           setColor(color)
@@ -94,4 +95,42 @@ function PreviousSet({set}: {set: TSet}){
     return <Text></Text>
   }
 }
-  
+
+type BtnProps = {
+  setAnimation: React.Dispatch<React.SetStateAction<Animations>>,
+  setSessionActivityState: React.Dispatch<React.SetStateAction<boolean>>,
+  setShootConfetti: React.Dispatch<React.SetStateAction<boolean>>,
+  data: TTemplate,
+  modalVisible: Boolean
+}
+
+export const SessionButtons = ( { setAnimation, setSessionActivityState, setShootConfetti, data, modalVisible}: BtnProps) => {
+  return(
+    <View style={sessionStyle.buttonsView} onLayout={
+      () => {
+        setAnimation(Animations.slide)
+      }
+    }>
+      <Pressable
+              style={[templateModalStyle.button, templateModalStyle.buttonStart]}
+              onPress={() => {
+                //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+                //TODO: SAVE when finished.
+                setSessionActivityState(!modalVisible);
+                setShootConfetti(true);
+                console.log(data)
+              }}
+             >
+              <Text style={sessionStyle.textStyle}>Finish</Text>
+      </Pressable>
+      <Pressable
+              style={[sessionStyle.button, sessionStyle.buttonClose]}
+              onPress={() => { 
+                setSessionActivityState(!modalVisible);
+              }}
+            >
+              <Text style={templateModalStyle.textStyle}>Cancel</Text>
+      </Pressable>
+    </View>
+  )
+}

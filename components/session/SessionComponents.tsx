@@ -23,31 +23,23 @@ const Header = () => {
 type TSetWithId = {
   data: {
     set: TSet, 
-    idx: number, 
-    inputData: TTemplate, 
-    setInputData: React.Dispatch<React.SetStateAction<TTemplate>>
     exerciseRowIndex: number,
   }, 
   key: string
 }
 type Props = {
   Exercise: TExercise,
-  inputData: TTemplate
-  setInputData: React.Dispatch<React.SetStateAction<TTemplate>>,
   exerciseRowIndex: number,
 }
-export default function ExcerciseRow( { Exercise, inputData, setInputData, exerciseRowIndex}:Props){
+export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
   const [exerciseSets, _] = useState<TSetWithId[]>(
-    Exercise.sets.map((set: TSet,i: number) => (
+    Exercise.sets.map((set: TSet) => (
       {
         data: {
           set: set, 
-          idx: parseInt(set.key),
-          inputData: inputData,
-          setInputData: setInputData,
           exerciseRowIndex: exerciseRowIndex,
         },
-        key: set.key
+        key: `${set.id}`
       }
     ))
   )
@@ -62,7 +54,7 @@ export default function ExcerciseRow( { Exercise, inputData, setInputData, exerc
           renderItem={(content) => {
             return (
                 <TouchableHighlight>
-                  <SetRow data={content.item.data}/>
+                  <SetRow info={content.item.data}/>
                 </TouchableHighlight>
             )}
           }

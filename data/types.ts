@@ -12,14 +12,14 @@ export type TSet = {
   reps: string
   previousKG: string | null
   previousREPS: string | null
-  key: string
+  id: number
 }
 
 export type TExercise = {
   title: string
   type: ExerciseType
   sets: TSet[]
-  key: string
+  id: number
 }
 
 export type TTemplate = {
