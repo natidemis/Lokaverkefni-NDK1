@@ -2,12 +2,12 @@ import React, { useState } from "react"
 import { ListRenderItemInfo, Pressable, TouchableHighlight, View, Text, TextInput} from "react-native"
 import { sessionStyle } from "./SessionStyle"
 import { EvilIcons } from '@expo/vector-icons';
-import { TSet } from "../../data/types";
+import { TSet, TTemplate } from "../../data/types";
 import styles from "../../Styles";
 import { data } from "./Session";
 
 
-export const SessionHiddenButton = (data, rowMap) => {
+export const SessionHiddenButton = () => {
   return(
     <View style= {sessionStyle.hiddenButtonView}>
       <Pressable
@@ -28,15 +28,19 @@ type Props = {
   data: {
     set: TSet, 
     idx: number, 
-    inputData: data[][], 
-    setInputData: React.Dispatch<React.SetStateAction<data[][]>>,
-    exIdx: number,
+    inputData: TTemplate 
+    setInputData: React.Dispatch<React.SetStateAction<TTemplate>>,
+    exerciseRowIndex: number,
   }
 }
 export function SetRow( {data}: Props){
-  const {set, idx, inputData, setInputData, exIdx} = data
-  const [inputWeight, setInputWeight] = useState<string>(inputData[exIdx][idx].inputWeight)
-  const [inputReps, setInputReps] = useState<string>(inputData[exIdx][idx].inputReps)
+  const {set, idx, inputData, setInputData, exerciseRowIndex} = data
+  const [color, setColor] = useState<{weights: string, kg: string}>({weights: 'grey', kg: 'grey'})
+  const [inputWeight, setInputWeight] = useState<string>(
+    inputData.exercises[exerciseRowIndex].sets[idx].previousKG)
+  const [inputReps, setInputReps] = useState<string>(
+    inputData.exercises[exerciseRowIndex].sets[idx].previousREPS
+  )
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
       <React.Fragment>
@@ -45,22 +49,26 @@ export function SetRow( {data}: Props){
         </View>
         <PreviousSet set={set}></PreviousSet>
         <TextInput
-          style= {sessionStyle.setInput}
+          style= {[sessionStyle.setInput,{color: color.weights} ]}
           keyboardType='numeric'
           onChangeText={text => {
-            inputData[exIdx][idx].inputWeight = text
+            inputData.exercises[exerciseRowIndex].sets[idx].weight = text
             setInputData(inputData)
             setInputWeight(text)
+            color.weights = 'black'
+            setColor(color)
           }}
           value= {inputWeight}
        />
        <TextInput
-         style= {sessionStyle.setInput}
+         style= {[sessionStyle.setInput,color.kg? {color: 'grey'} : null]}
          keyboardType='numeric'
          onChangeText={text => {
-          inputData[exIdx][idx].inputReps = text
+          inputData.exercises[exerciseRowIndex].sets[idx].reps = text
           setInputData(inputData)
           setInputReps(text)
+          color.kg = 'black'
+          setColor(color)
         }}
          value= {inputReps}
         />

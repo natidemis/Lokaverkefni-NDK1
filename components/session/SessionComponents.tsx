@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, TouchableHighlight } from "react-native";
-import { TExercise, TSet } from "../../data/types";
+import { TExercise, TSet, TTemplate } from "../../data/types";
 import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -24,42 +24,42 @@ type TSetWithId = {
   data: {
     set: TSet, 
     idx: number, 
-    inputData: data[][], 
-    setInputData: React.Dispatch<React.SetStateAction<data[][]>>
-    exIdx: number,
+    inputData: TTemplate, 
+    setInputData: React.Dispatch<React.SetStateAction<TTemplate>>
+    exerciseRowIndex: number,
   }, 
   key: string
 }
 type Props = {
   Exercise: TExercise,
-  inputData: data[][]
-  setInputData: React.Dispatch<React.SetStateAction<data[][]>>,
-  exIdx: number,
+  inputData: TTemplate
+  setInputData: React.Dispatch<React.SetStateAction<TTemplate>>,
+  exerciseRowIndex: number,
 }
-export default function ExcerciseRow( { Exercise, inputData, setInputData, exIdx}:Props){
+export default function ExcerciseRow( { Exercise, inputData, setInputData, exerciseRowIndex}:Props){
   const [exerciseSets, _] = useState<TSetWithId[]>(
     Exercise.sets.map((set: TSet,i: number) => (
       {
         data: {
           set: set, 
-          idx: i,
+          idx: parseInt(set.key),
           inputData: inputData,
           setInputData: setInputData,
-          exIdx: exIdx,
+          exerciseRowIndex: exerciseRowIndex,
         },
-        key: `${i}`
+        key: set.key
       }
     ))
   )
   return(
-    <React.Fragment>
+    <>
       <Text style={styles.title}>{Exercise.title}</Text>
       <Header/>
        <View>
         <SwipeListView
           style={{width:'100%'}}
           data={exerciseSets}
-          renderItem={(content, rowMap) => {
+          renderItem={(content) => {
             return (
                 <TouchableHighlight>
                   <SetRow data={content.item.data}/>
@@ -82,6 +82,6 @@ export default function ExcerciseRow( { Exercise, inputData, setInputData, exIdx
           <Text style={sessionStyle.textStyle}>+ set</Text>
         </Pressable>
       </View>
-    </React.Fragment>
+    </>
   )
 }

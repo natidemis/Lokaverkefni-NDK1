@@ -29,43 +29,12 @@ export type data = {
 }
 export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: Props) {
     const [animation, setAnimation] = useState<Animations>(Animations.none);
-    const [inputData, setInputData] = useState<data[][]>(template?.exercises.map((exercise, i) => (
-      exercise.sets.map((set, j) => (
-          {
-            inputWeight: set.weight,
-            inputReps: set.reps,
-          }
-        ))
-    )));
-    const [exercises, setExercises] = useState<ExercisesWkey[]>(
-      template?.exercises.map((exercise,i) =>(
-        {
-          exercise: exercise,
-          key: `${i}`,
-
-        }
-      ))
-    )
+    const [data, setData] = useState<TTemplate>(template)
 
     useEffect(() => {
-      setExercises(
-        template?.exercises.map((exercise,i) =>(
-          {
-            exercise: exercise,
-            key: `${i}`,
-          }
-        ))
-      )
-
-      setInputData((template?.exercises.map((exercise, i) => (
-        exercise.sets.map((set, j) => (
-            {
-              inputWeight: set.weight,
-              inputReps: set.reps,
-            }
-          ))
-      ))))
+      setData(template)
     },[template])
+
 
 
     //TODO: take the functions in as arguments and move this to "SessionRenderComponents.tsx"
@@ -83,7 +52,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
                     //TODO: SAVE when finished.
                     setSessionActivityState(!modalVisible);
                     setShootConfetti(true);
-                    console.log(inputData)
+                    console.log(data)
                   }}
                  >
                   <Text style={sessionStyle.textStyle}>Finish</Text>
@@ -115,17 +84,17 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
         {/* 
         Flat list ekki að virka á exercise row?
         */}
-        {template? (
+        {data? (
         <FlatList
-          data={exercises}
+          data={data?.exercises}
           renderItem={(item) => {
             return (
               <ExcerciseRow 
-                Exercise={item.item.exercise}
+                Exercise={item.item}
                 key={item.item.key}
-                inputData={inputData}
-                setInputData={setInputData}
-                exIdx={parseInt(item.item.key)}
+                inputData={data}
+                setInputData={setData}
+                exerciseRowIndex={parseInt(item.item.key)}
                 />
             )
           }}
@@ -134,7 +103,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
             <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
           }
           ListFooterComponent={SessionButtons}
-          />) : <React.Fragment></React.Fragment>}
+          />) : <></>}
         </View>
       </View>
     </Modal>

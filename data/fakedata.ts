@@ -8,63 +8,59 @@ export const dummyTemplate = (title = 'test template'): TTemplate => {
     title,
     date: getCurrentDate(),
     exercises: [
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
-      createRandomExercise(),
+      createRandomExercise(`${1-1}`),
+      createRandomExercise(`${2-1}`),
+      createRandomExercise(`${3-1}`),
+      createRandomExercise(`${4-1}`),
+      createRandomExercise(`${5-1}`),
+      createRandomExercise(`${6-1}`),
+      createRandomExercise(`${7-1}`),
     ],
   };
 };
 
-function createRandomExercise(title?: string): TExercise {
+function createRandomExercise(key: string, title?: string,): TExercise {
   return {
     title: title || 'Réttstöðulyfta',
     type: ExerciseType.barbell,
-    sets: [createSet(), createSet()],
+    sets: [createSet(`${0}`), createSet(`${1}`)],
+    key: key
   };
 }
 
-function createSet(): TSet {
+function createSet(key: string): TSet {
   const weight = "10";
   const reps = "10";
   return {
     weight: weight,
     reps: reps,
-    previousKG: 10,
-    previousREPS: 10
+    previousKG: weight,
+    previousREPS: reps,
+    key: key
   };
 }
 
 export const dummyExercises = [
-  createRandomExercise(),
-  createRandomExercise('Squats'),
-  createRandomExercise('Deadlift'),
-  createRandomExercise('Bench press'),
-  createRandomExercise('Incline Bench press'),
-  createRandomExercise('Pull ups'),]
-
+    createRandomExercise(`${1-1}`),
+    createRandomExercise(`${2-1}`),
+    createRandomExercise(`${3-1}`),
+    createRandomExercise(`${4-1}`),
+    createRandomExercise(`${5-1}`),
+    createRandomExercise(`${6-1}`),
+    createRandomExercise(`${7-1}`),
+]
 export const dummySession: TSession = {
   title: 'My first session',
   date: getCurrentDate(),
   duration: 'HH:mm:ss',
   template: dummyTemplate('template 1'),
   exercises: [
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
-    createRandomExercise(),
+    createRandomExercise(`${1-1}`),
+      createRandomExercise(`${2-1}`),
+      createRandomExercise(`${3-1}`),
+      createRandomExercise(`${4-1}`),
+      createRandomExercise(`${5-1}`),
+      createRandomExercise(`${6-1}`),
+      createRandomExercise(`${7-1}`),
   ],
 };
