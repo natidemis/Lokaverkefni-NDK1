@@ -5,6 +5,7 @@ import styles from "../../Styles";
 import { sessionStyle } from "./SessionStyle";
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { RenderSet, SessionHiddenButton } from "./SessionRenderComponents";
+import { data } from "./Session";
 
 
   
@@ -20,7 +21,12 @@ import { RenderSet, SessionHiddenButton } from "./SessionRenderComponents";
   }
   
   type TSetWithId = {data: TSet, key: string}
-  export default function ExcerciseRow( { Exercise }: { Exercise: TExercise}){
+  type Props = {
+    Exercise: TExercise,
+    inputData: data[][]
+    setInputData: React.Dispatch<React.SetStateAction<data[][]>>
+  }
+  export default function ExcerciseRow( { Exercise, inputData, setInputData}:Props){
     const [exerciseSets, _] = useState<TSetWithId[]>(
       Exercise.sets.map((set,i) => (
         {

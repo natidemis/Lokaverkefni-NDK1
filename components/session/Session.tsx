@@ -15,16 +15,34 @@ export type ExercisesWkey = {
   //stateSet: [TSet[], Dispatch<React.SetStateAction<TSet[]>>]
 }
 
-export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: 
-  {modalVisible: boolean, template: TTemplate,
-     setSessionActivityState: Function, setShootConfetti: Function }) {
+type Props = {
+  modalVisible: boolean, 
+  template: TTemplate,
+  setSessionActivityState: Function, 
+  setShootConfetti: Function 
+}
+
+
+export type data = {
+  inputWeight: string,
+  inputReps: string
+}
+export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: Props) {
     const [animation, setAnimation] = useState<Animations>(Animations.none);
+    const [inputData, setInputData] = useState<data[][]>(template?.exercises.map((exercise, i) => (
+      exercise.sets.map((set, j) => (
+          {
+            inputWeight: set.weight,
+            inputReps: set.reps,
+          }
+        ))
+    )));
     const [exercises, setExercises] = useState<ExercisesWkey[]>(
       template?.exercises.map((exercise,i) =>(
         {
           exercise: exercise,
           key: `${i}`,
-          //stateSet: useState<TSet[]>(exercise.sets)
+
         }
       ))
     )
@@ -35,10 +53,18 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
           {
             exercise: exercise,
             key: `${i}`,
-            //stateSet: useState<TSet[]>(exercise.sets)
           }
         ))
       )
+
+      setInputData((template?.exercises.map((exercise, i) => (
+        exercise.sets.map((set, j) => (
+            {
+              inputWeight: set.weight,
+              inputReps: set.reps,
+            }
+          ))
+      ))))
     },[template])
 
 
@@ -93,7 +119,12 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
           data={exercises}
           renderItem={(item) => {
             return (
-              <ExcerciseRow Exercise={item.item.exercise} key={item.item.key} />
+              <ExcerciseRow 
+                Exercise={item.item.exercise}
+                key={item.item.key}
+                inputData={inputData}
+                setInputData={setInputData}
+                />
             )
           }}
           keyExtractor={item => item.key}

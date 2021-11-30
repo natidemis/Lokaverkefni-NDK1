@@ -28,8 +28,8 @@ function createRandomExercise(title?: string): TExercise {
 }
 
 function createSet(): TSet {
-  const weight = 10;
-  const reps = 10;
+  const weight = "10";
+  const reps = "10";
   return {
     weight: weight,
     reps: reps,
