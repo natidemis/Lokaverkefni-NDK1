@@ -83,6 +83,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
                     //TODO: SAVE when finished.
                     setSessionActivityState(!modalVisible);
                     setShootConfetti(true);
+                    console.log(inputData)
                   }}
                  >
                   <Text style={sessionStyle.textStyle}>Finish</Text>
@@ -124,6 +125,7 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
                 key={item.item.key}
                 inputData={inputData}
                 setInputData={setInputData}
+                exIdx={parseInt(item.item.key)}
                 />
             )
           }}
