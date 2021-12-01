@@ -75,12 +75,11 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
               }
               ListFooterComponent={
               <SessionButtons
-              setAnimation={setAnimation}
-              setSessionActivityState={setSessionActivityState}
-              setShootConfetti={setShootConfetti}
-              data={data}
-              modalVisible={modalVisible}
-              
+                setAnimation={setAnimation}
+                setSessionActivityState={setSessionActivityState}
+                setShootConfetti={setShootConfetti}
+                data={data}
+                modalVisible={modalVisible}
               />
             }
               />) : <></>}

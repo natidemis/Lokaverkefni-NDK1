@@ -2,13 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const templateStyle = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0,
       flexDirection: 'row',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
       top: 0,
       padding: 30,
-      width: '100%'
+      width: '100%',
     },
     template: {
       backgroundColor: '#ffffff',

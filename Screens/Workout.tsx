@@ -8,18 +8,22 @@ import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 import TemplateView from '../components/Template/Template';
 import {TTemplate } from '../data/types';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import { fetchTemplates } from '../data/Datastorage/datastorage';
 
 const dt = dummyTemplate('dummy')
 const Sessions = () => {
     const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
     const [isSessionActive, setSessionActivityState] = useState<boolean>(false);
     const [shootConfetti, setShootConfetti] = useState<boolean>(false);
-    const templates: TTemplate[] = [
-      dummyTemplate('template 1'),
-      dummyTemplate('template 2'),
-      dummyTemplate('template 3'),
-    ];
-
+    const [allTemplates, setAllTemplates] = useState<TTemplate[] | null>(null);
+    
+    useEffect(() => {
+      const getData = async () => {
+        const templates = await fetchTemplates()
+        setAllTemplates(templates)
+      }
+      getData()
+    },[])
     useEffect(() => {
       const timer = setTimeout(() => {
         setShootConfetti(false)
@@ -30,24 +34,26 @@ const Sessions = () => {
 
 
     return (
-      <React.Fragment>
-        <BackgroundImage>
-          <TemplateView 
-            templates={templates}
-            setActiveTemplateForWorkout={setActiveTemplate}
-            setSessionModalVisible={setSessionActivityState}
+      <>
+        {allTemplates ? 
+          <BackgroundImage>
+            <TemplateView 
+              templates={allTemplates}
+              setActiveTemplateForWorkout={setActiveTemplate}
+              setSessionModalVisible={setSessionActivityState}
+              />
+            <Session 
+              modalVisible= {isSessionActive}
+              template={activeTemplate}
+              setSessionActivityState={setSessionActivityState}
+              setShootConfetti={setShootConfetti}
             />
-          <Session 
-            modalVisible= {isSessionActive}
-            template={activeTemplate}
-            setSessionActivityState={setSessionActivityState}
-            setShootConfetti={setShootConfetti}
-          />
-          <StatusBar style="auto" />
-          {shootConfetti ? 
-            (<ConfettiCannon count={200} origin={{x: -10, y: 0}}/>) : null}
-        </BackgroundImage>
-      </React.Fragment>
+            <StatusBar style="auto" />
+            {shootConfetti ? 
+              (<ConfettiCannon count={200} origin={{x: -10, y: 0}}/>) : null}
+          </BackgroundImage>
+      : null}
+      </>
     );
   }
 

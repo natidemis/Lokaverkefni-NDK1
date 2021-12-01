@@ -11,7 +11,10 @@ const image = require('./Images/gym.jpg')
 
 export default function App() {
   useEffect(() => {
-    initStorage();
+    const setup = async () => {
+      await initStorage();
+    }
+    setup();
   },[])
   return (
 
