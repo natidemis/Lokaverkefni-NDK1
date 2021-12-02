@@ -3,12 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
 import React, { useContext, useEffect, useState } from 'react';
 import HistoryComponent from '../components/history/History';
-import { dummySession } from '../data/fakedata';
 import { TSession } from '../data/types';
-import { fetchData, keys } from '../data/Datastorage/datastorage';
+import { keys } from '../data/Datastorage/setup';
 import { BackgroundContext } from '../BackgroundContext';
+import { fetchData } from '../data/Datastorage/datastorage';
 
-const sessions = [dummySession, dummySession]
 const HistoryScreen = () => {
     const {BackgroundImage} = useContext(BackgroundContext)
     const [history, setHistory] = useState<TSession[]>(null)
@@ -21,7 +20,6 @@ const HistoryScreen = () => {
     },[])
     return (
       <React.Fragment>
-        {console.log('history  renderin')}
         <BackgroundImage>
           <HistoryComponent history={history}/>
           <StatusBar style="auto" />      

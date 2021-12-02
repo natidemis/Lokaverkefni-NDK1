@@ -23,11 +23,17 @@ export type TExercise = {
   id: number
 }
 
+
+export type TTemplateExercises = {
+  exercise: TExercise
+  numSets: number
+}
 export type TTemplate = {
   title: string
-  date: string
-  exercises: TExercise[]
+  info: TTemplateExercises[]
 }
+
+
 
 export type TSession =  {
   title: string

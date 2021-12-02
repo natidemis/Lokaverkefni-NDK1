@@ -118,7 +118,6 @@ export const SessionButtons = ( { setAnimation, setSessionActivityState, setShoo
                 //TODO: SAVE when finished.
                 setSessionActivityState(!modalVisible);
                 setShootConfetti(true);
-                console.log(data)
               }}
              >
               <Text style={sessionStyle.textStyle}>Finish</Text>

@@ -59,17 +59,17 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
           <View style={sessionStyle.modalView}>
             {data? (
             <FlatList
-              data={data?.exercises}
+              data={data?.info}
               renderItem={(item) => {
                 return (
                   <ExcerciseRow 
-                    Exercise={item.item}
-                    key={item.item.id}
-                    exerciseRowIndex={item.item.id}
+                    Exercise={item.item.exercise}
+                    key={item.item.exercise.id}
+                    exerciseRowIndex={item.item.exercise.id}
                     />
                 )
               }}
-              keyExtractor={item => `${item.id}`}
+              keyExtractor={item => `${item.exercise.id}`}
               ListHeaderComponent={
                 <Text style={[styles.title, {fontSize: 25} ]}>{template?.title}</Text>
               }

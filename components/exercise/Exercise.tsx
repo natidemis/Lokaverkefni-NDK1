@@ -36,7 +36,6 @@ export function Exercise({ exercises }: { exercises: TExercise[] }) {
               <Pressable
               style={ExerciseStyles.textView}
               onPress={() => {
-                console.log('component2',data[0])
                 //TODO: create new set on click.
                 //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
                 console.log('pressed')

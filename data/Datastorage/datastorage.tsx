@@ -1,58 +1,42 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { dummyTemplate } from '../fakedata';
-import { ExerciseType, TExercise, TSession } from '../types';
+import { ExerciseType, TExercise, TSession, TTemplate } from '../types';
 import { ExerciseData } from './ExerciseData';
+import { keys } from './setup';
+import { templatesData } from './TemplateData';
 
-export enum keys {
-    HISTORY = 'History',
-    ALLEXERCISES = 'allexercises',
-    TEMPLATES = 'templates'
-}
-
-export const initStorage = async () => {
-    
-    try{
-        await AsyncStorage.getItem(keys.HISTORY)
-        .then(async (history) => {
-            history = JSON.parse(history)
-            if(history === null){
-                await AsyncStorage.setItem(keys.HISTORY, JSON.stringify([]))
-            }
-        })
-        
-        
-       await AsyncStorage.getItem(keys.ALLEXERCISES)
-        .then(async (exercises) => {
-            exercises = JSON.parse(exercises)
-            if(exercises === null) { 
-                var exerciseItems = {}
-                ExerciseData.forEach(([title, type]:[string, ExerciseType]) => {
-                    exerciseItems[Object.keys(exerciseItems).length.toString()] = {
-                        title: title + '(' + type + ')',
-                        type: type,
-                        sets: [],
-                        id: Object.keys(exerciseItems).length
-                    }
-                })
-                await AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify(exerciseItems))
-            }
-        })
-        
-        await AsyncStorage.getItem(keys.TEMPLATES)
-        .then(async (templates) => {
-            templates = JSON.parse(templates)
-            if(templates === null)
-                await AsyncStorage.setItem(keys.TEMPLATES, JSON.stringify([dummyTemplate()]))
-        })
-        //TODO setja inn grunn template
-    }catch (e){
-        alert('Villa að upphafstilla gögn')
-    }
-}
 
 export const fetchData= async (key: keys) => {
-    const data = await AsyncStorage.getItem(key)
-    return JSON.parse(data)
+    var result;
+    await AsyncStorage.getItem(key).then((data) => {
+        result= JSON.parse(data)
+    })
+    return result;
+}
+
+export const fetchTemplates= async () => {
+    var result: TTemplate[];
+    await AsyncStorage.getItem(keys.TEMPLATES).then((data) => {
+        result= JSON.parse(data)
+        for(var i in result){
+            for(var j in result[i].info){
+                //update the exercise by fetching from the exercise storage
+                fetchExerciseById(result[i].info[j].exercise.id).then((exercise) => {
+                    result[i].info[j].exercise = exercise
+                })
+            }
+        }
+    })
+    return result;
+}
+
+export const fetchExerciseById = async(id: number) => {
+    var result: TExercise;
+    await fetchData(keys.ALLEXERCISES)
+    .then((data) => {
+        const json = JSON.parse(data)
+        result = json[id.toString()]
+    })
+    return result
 }
 
 export const storeExercise = (exercise: TExercise) => {

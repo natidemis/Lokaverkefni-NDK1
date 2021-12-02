@@ -3,11 +3,8 @@ import { Pressable, ScrollView, Text, View } from "react-native"
 import { TTemplate } from "../../data/types"
 import { templateStyle} from "./TemplateStyles"
 import styles from "../../Styles"
-import { dummySession } from "../../data/fakedata"
 import TemplateModalComponent from "./TemplateModal"
 import DateComponent from "../Misc/date"
-
-const sessions = [dummySession]; //Most "recent" data for our template
 
 
 export default function TemplateView({
@@ -16,7 +13,7 @@ export default function TemplateView({
                                     setActiveTemplateForWorkout: Function,
                                     setSessionModalVisible: Function}) {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [activeTemplate, setActiveTemplate] = useState<TTemplate | null>(null);
+  const [activeTemplate, setActiveTemplate] = useState<TTemplate>(null);
 
 
   return (
@@ -44,8 +41,8 @@ export default function TemplateView({
                   numberOfLines={1}>
                   {template.title}
                 </Text>
-                {template.exercises.map((exercise, j) => {
-                  return (<Text key={j} style={styles.text} numberOfLines={1}>{exercise.title}</Text>)
+                {template.info.map((info, j) => {
+                  return (<Text key={j} style={[styles.text, {textAlign: 'left'}]} numberOfLines={1}>{info.exercise.title}</Text>)
                 })}
                 <DateComponent style={templateStyle.dateView} item={template}></DateComponent>
               </ScrollView>

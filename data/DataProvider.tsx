@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchData, keys, storeExercise, storeHistory } from "./Datastorage/datastorage";
+import { fetchData, fetchTemplates, storeExercise, storeHistory } from "./Datastorage/datastorage";
+import { keys,} from "./Datastorage/setup";
 import { TExercise, TSession, TTemplate } from "./types";
 
 type ContextProp = {
@@ -10,6 +11,10 @@ type ContextProp = {
     },
     historyVariables: {
         history: TSession[],
+    }
+    templateVariables: {
+        allTemplates: TTemplate[],
+        
     }
 }
 export const StorageContext = React.createContext<ContextProp>(null)
@@ -32,6 +37,9 @@ export const DataContextProvider = (props) => {
           fetchData(keys.HISTORY)
           .then((histResult) => {
               setHistory(histResult)
+          })
+          fetchTemplates().then((templates) => {
+              setAllTemplates(templates)
           })
         }
         getData()
@@ -56,6 +64,9 @@ export const DataContextProvider = (props) => {
             },
             historyVariables: {
                 history: history,
+            },
+            templateVariables:{
+                allTemplates: allTemplates,
             }
         }}>
             {props.children}

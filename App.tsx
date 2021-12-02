@@ -6,7 +6,7 @@ import styles from './Styles';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Tabs from './Tabs';
-import { initStorage } from './data/Datastorage/datastorage';
+import { initStorage } from './data/Datastorage/setup';
 import { BackgroundContext } from './BackgroundContext';
 import { BackgroundImage } from './components/BackgroundImage/BackgroundImage';
 import { DataContextProvider } from './data/DataProvider';

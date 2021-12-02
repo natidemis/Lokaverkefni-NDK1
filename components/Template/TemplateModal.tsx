@@ -28,8 +28,8 @@ export default function TemplateModalComponent(
          <View style={templateModalStyle.modalView}>
            <Text style={[styles.title, {fontSize: 25}]}>{activeTemplate?.title}</Text>
            <DateComponent style={templateModalStyle.dateView} item={activeTemplate}/>
-           {activeTemplate?.exercises.map((exercise, i) => {
-              return(<Text style={[styles.text, {color: 'black'}]} key={i}> {exercise.sets.length} × {exercise.title}({exercise.type})</Text>)
+           {activeTemplate?.info.map((info, i) => {
+              return(<Text style={[styles.text, {color: 'black'}]} key={i}> {info.numSets} × {info.exercise.title}({info.exercise.type})</Text>)
             })}
             <TemplateModalButtons
               onChange={onChange}
