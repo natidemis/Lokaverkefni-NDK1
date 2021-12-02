@@ -25,7 +25,7 @@ export function Exercise({ exercises }: { exercises: TExercise[] }) {
   useEffect(()=> {
     setData( exercises.map((exercise,i) => (
       {
-        value: `${exercise.title}(${exercise.type})`,
+        value: `${exercise.title}`,
         key: `${i}`
       }
     )));
@@ -39,7 +39,7 @@ export function Exercise({ exercises }: { exercises: TExercise[] }) {
           data={data} 
           indexLetterStyle= {{
             color: 'lightblue', 
-            fontSize: 10,
+            fontSize: 12,
           }}
           renderCustomItem={
             (item) => (

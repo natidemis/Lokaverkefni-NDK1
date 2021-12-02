@@ -13,6 +13,7 @@ export const ExerciseStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: '105%',
+    height: '80%',
     margin: 0,
     backgroundColor: "white",
     borderRadius: 20,
@@ -48,7 +49,7 @@ export const ExerciseStyles = StyleSheet.create({
     display:'flex',
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#EFEFEF',
+    backgroundColor: '#FBFBFB',
     paddingTop: 7,
     height: 30,
     marginBottom: 5,
@@ -68,6 +69,7 @@ export const ExerciseStyles = StyleSheet.create({
       borderBottomColor: 'grey',
       borderBottomWidth: 1,
       marginBottom: 5,
+      backgroundColor:'white'
   },
   button: {
     width: 100,

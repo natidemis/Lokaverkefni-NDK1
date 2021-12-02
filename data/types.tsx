@@ -4,7 +4,8 @@ export enum ExerciseType{
   dumbbell = "Dumbbell",
   machine = "Machine",
   cable = "Cable",
-  body = "Bodyweight"
+  bodyweight = "Bodyweight",
+  kettlebell = 'Kettlebell'
 }
 
 export type TSet = {

@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { dummyTemplate } from '../fakedata';
+import { ExerciseType, TExercise } from '../types';
+import { ExerciseData } from './data';
 
 export enum keys {
     HISTORY = 'History',
@@ -12,13 +14,24 @@ export const initStorage = async () => {
     console.log("INITIALIZING..................")
     
     try{
-        let history = await AsyncStorage.getItem(keys.HISTORY)
+        var history = await AsyncStorage.getItem(keys.HISTORY)
         history = JSON.parse(history)
-        if(!history[0])
+        if(!history)
             await AsyncStorage.setItem(keys.HISTORY, JSON.stringify([]))
-        const exercises = await AsyncStorage.getItem(keys.ALLEXERCISES)
-        if(!exercises)
-            await AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify({}))
+        var exercises = await AsyncStorage.getItem(keys.ALLEXERCISES)
+        exercises = JSON.parse(exercises)
+        if(exercises && Object.keys(exercises).length === 0) { 
+            var exerciseItems = {}
+            ExerciseData.forEach(([title, type]:[string, ExerciseType]) => {
+                exerciseItems[title+'('+type+')'] = {
+                    title: title + '(' + type + ')',
+                    type: type,
+                    sets: [],
+                    id: Object.keys(exerciseItems).length
+                }
+            })
+            await AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify(exerciseItems))
+        }
         let templates = await AsyncStorage.getItem(keys.TEMPLATES)
         templates = JSON.parse(templates)
         if(!templates[0])
@@ -34,5 +47,10 @@ export const initStorage = async () => {
 export const fetchTemplates = async () => {
     const data = await AsyncStorage.getItem(keys.TEMPLATES)
 
+    return JSON.parse(data)
+}
+
+export const fetchExercises = async () => {
+    const data = await AsyncStorage.getItem(keys.ALLEXERCISES)
     return JSON.parse(data)
 }
