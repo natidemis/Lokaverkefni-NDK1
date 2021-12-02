@@ -32,7 +32,17 @@ type Props = {
   exerciseRowIndex: number,
 }
 export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
-  const {data} = useContext<DataProps>(DataContext) 
+  const {data} = useContext<DataProps>(DataContext)
+  const numSets = data.info[exerciseRowIndex].numSets - data.info[exerciseRowIndex].exercise.sets.length
+  for(var i = 0; i < numSets; i++){
+    data.info[exerciseRowIndex].exercise.sets.push(
+      {
+        weight: "",
+        reps: "",
+        id: data.info[exerciseRowIndex].exercise.sets.length
+      }
+    )
+  }
   return(
     <>
       <Text style={styles.title}>{Exercise.title}</Text>
@@ -41,6 +51,7 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
         <SwipeListView
           style={{width:'100%'}}
           data={data.info[exerciseRowIndex].exercise.sets}
+          keyExtractor={item => item.id.toString()}
           renderItem={(content) => {
             return (
                 <TouchableHighlight>

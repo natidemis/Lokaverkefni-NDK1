@@ -35,18 +35,16 @@ export function SetRow( {set, exerciseRowIndex}: Props){
 
   const {data, setData} = useContext(DataContext) 
   const [color, setColor] = useState<{weights: string, kg: string}>({weights: 'grey', kg: 'grey'})
-  const [inputWeight, setInputWeight] = useState<string>(
-    data.info[exerciseRowIndex].exercise.sets[set.id].previousKG)
-  const [inputReps, setInputReps] = useState<string>(
-    data.info[exerciseRowIndex].exercise.sets[set.id].previousREPS
-  )
+  const [inputWeight, setInputWeight] = useState<string>(set.weight)
+  const [inputReps, setInputReps] = useState<string>(set.reps)
+  const [{prevWeights, prevReps}] = useState({prevWeights: set.weight, prevReps: set.reps})
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
       <React.Fragment>
         <View style= {sessionStyle.rowIdView}>
-          <Text style={sessionStyle.rowId}>{set.id}</Text>
+          <Text style={sessionStyle.rowId}>{set.id + 1}</Text>
         </View>
-        <PreviousSet set={set}></PreviousSet>
+        <PreviousSet prevWeights={prevWeights} prevReps={prevReps}></PreviousSet>
         <TextInput
           style= {[sessionStyle.setInput,{color: color.weights} ]}
           keyboardType='numeric'
@@ -79,18 +77,22 @@ export function SetRow( {set, exerciseRowIndex}: Props){
 
 
 
-function PreviousSet({set}: {set: TSet}){
-  if(set.previousKG !== null && set.previousREPS !== null){
+function PreviousSet({prevWeights, prevReps}: {prevWeights: string, prevReps: string}){
+  if(prevWeights && prevReps){
     return (
       <View style={sessionStyle.prevTextView}>
         <Text
           style={[styles.text, sessionStyle.prevText]}>
-            {set.previousKG}kg × {set.previousREPS}
+            {prevWeights}kg × {prevReps}
           </Text>
       </View>
     )
   }else{
-    return <Text></Text>
+    return (
+      <View style={[sessionStyle.prevTextView,{marginRight: '40%'}]}>
+        <Text></Text>
+      </View>
+    )
   }
 }
 

@@ -11,8 +11,6 @@ export enum ExerciseType{
 export type TSet = {
   weight: string
   reps: string
-  previousKG: string | null
-  previousREPS: string | null
   id: number
 }
 
