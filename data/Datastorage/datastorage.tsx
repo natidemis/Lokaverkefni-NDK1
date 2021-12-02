@@ -8,10 +8,8 @@ export enum keys {
     ALLEXERCISES = 'allexercises',
     TEMPLATES = 'templates'
 }
-//TODO setja inn grunn templates
 
 export const initStorage = async () => {
-    console.log("INITIALIZING..................")
     
     try{
         var history = await AsyncStorage.getItem(keys.HISTORY)
@@ -34,23 +32,16 @@ export const initStorage = async () => {
         }
         let templates = await AsyncStorage.getItem(keys.TEMPLATES)
         templates = JSON.parse(templates)
-        if(!templates[0])
+        if(!templates)
             await AsyncStorage.setItem(keys.TEMPLATES, JSON.stringify([dummyTemplate()]))
 
         //TODO setja inn grunn template
     }catch (e){
-        console.error(e)
-        process.exit(1)
+        alert('error')
     }
 }
 
-export const fetchTemplates = async () => {
-    const data = await AsyncStorage.getItem(keys.TEMPLATES)
-
-    return JSON.parse(data)
-}
-
-export const fetchExercises = async () => {
-    const data = await AsyncStorage.getItem(keys.ALLEXERCISES)
+export const fetchData= async (key: keys) => {
+    const data = await AsyncStorage.getItem(key)
     return JSON.parse(data)
 }

@@ -8,7 +8,7 @@ import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 import TemplateView from '../components/Template/Template';
 import {TTemplate } from '../data/types';
 import ConfettiCannon from 'react-native-confetti-cannon';
-import { fetchTemplates } from '../data/Datastorage/datastorage';
+import { fetchData, keys } from '../data/Datastorage/datastorage';
 
 const dt = dummyTemplate('dummy')
 const Sessions = () => {
@@ -19,7 +19,7 @@ const Sessions = () => {
     
     useEffect(() => {
       const getData = async () => {
-        const templates = await fetchTemplates()
+        const templates = await fetchData(keys.TEMPLATES)
         setAllTemplates(templates)
       }
       getData()

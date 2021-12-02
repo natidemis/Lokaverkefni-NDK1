@@ -18,6 +18,7 @@ export const ExerciseStyles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     padding: 0,
+    paddingBottom: 0,
     alignItems: "baseline",
 
   },
@@ -28,7 +29,9 @@ export const ExerciseStyles = StyleSheet.create({
     margin: 0,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 25,
     alignItems: "baseline",
     shadowColor: "#000",
     shadowOffset: {

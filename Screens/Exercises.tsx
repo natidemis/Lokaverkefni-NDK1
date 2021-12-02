@@ -7,14 +7,14 @@ import { Session as SessionComponent } from '../components/session/Session';
 import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 import { Exercise } from '../components/exercise/Exercise';
 import { TExercise } from '../data/types';
-import { fetchExercises } from '../data/Datastorage/datastorage';
+import { fetchData, keys } from '../data/Datastorage/datastorage';
 //const image = require('../Images/gym.jpg')
 const ExerciseScreen = () => {
     const [exercises, setExercises] = useState<TExercise[] | null>(null);
 
     useEffect(()=>{
       const getData = async () => {
-        const result: TExercise = await fetchExercises()
+        const result: TExercise = await fetchData(keys.ALLEXERCISES)
         let data:TExercise[] = []
         for(let [_, value] of Object.entries(result)){
           //@ts-ignore

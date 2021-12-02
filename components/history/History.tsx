@@ -5,12 +5,12 @@ import React from "react";
 import { HistoryExercise, HistoryHeader, HistorySets } from "./HistoryComponents";
 
 
-export default function HistoryComponent({sessions}: {sessions: TSession[]}){
+export default function HistoryComponent({history}: {history: TSession[]}){
 
 
     return (
         <ScrollView contentContainerStyle={historyStyle.container}>
-            {sessions.map((session, i) => {
+            {history.map((session, i) => {
                 return (
                   <Pressable key={i} onPress={() => {
                       //do something
