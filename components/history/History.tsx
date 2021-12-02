@@ -10,17 +10,18 @@ export default function HistoryComponent({history}: {history: TSession[]}){
 
     return (
         <ScrollView contentContainerStyle={historyStyle.container}>
-            {history ? history.map((session, i) => {
+            {history ? history.map((session: TSession, i) => {
                 return (
                   <Pressable key={i} onPress={() => {
                       //do something
                   }}
                   >
-                    <View style={historyStyle.sessionHist} key={i}>
+                    <View style={historyStyle.sessionHist}>
                         <HistoryHeader session={session} />
                         <View style={historyStyle.historySection}>
-                            <HistoryExercise info={session.exercises} />
-                            <HistorySets info={session.exercises} />
+     
+                            <HistoryExercise info={session.info} />
+                            <HistorySets info={session.info} />
                         </View>
                     </View>
                   </Pressable>

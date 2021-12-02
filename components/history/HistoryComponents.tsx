@@ -27,7 +27,8 @@ export const HistoryExercise = ({info}: {info: TTemplateExercises[]}): ReactElem
     return (
         <View style={historyStyle.exercisesList}>
             <Text style={styles.title}>Exercises</Text>
-            {info.map((data, i) => {
+            {
+            info.map((data, i) => {
               return(
                 <Text 
                     style={[styles.text, {color: 'black'}]} 
@@ -47,7 +48,7 @@ export const HistorySets = ({info}: {info: TTemplateExercises[]}): ReactElement<
     return(
         <View style={historyStyle.exercisesSetsList}>
             <Text style={styles.title}>Best sets</Text>
-            {info.map((data,i) => {
+            { info.map((data,i) => {
                 const bestSet: TSet = data.exercise.sets.sort(sortSet).slice(-1)[0];
                 if(bestSet === undefined){
                     return(

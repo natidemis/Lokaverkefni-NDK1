@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { ExerciseType, TExercise } from "../../data/types";
+import React, { useState } from "react";
+import {  TExercise } from "../../data/types";
 import { Pressable, Text, View } from "react-native";
-import styles from "../../Styles";
 import { AlphabetList } from "react-native-section-alphabet-list";
-import { ExercisesWkey } from "../session/Session";
 import { ExerciseStyles } from "./ExerciseStyle";
 import { NewExerciseButton, SearchBar } from "./ExerciseComponents";
-import filter from 'lodash.filter';
 type ExercisesUnwrapped = {
   value: string,
   key: string

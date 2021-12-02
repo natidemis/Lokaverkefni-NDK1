@@ -16,7 +16,7 @@ export const initStorage = async () => {
         await AsyncStorage.getItem(keys.HISTORY)
         .then(async (data) => {
             const history: TSession[] = JSON.parse(data)
-            if(history === null){
+            if(true){
                 await AsyncStorage.setItem(keys.HISTORY, JSON.stringify([]))
             }
         })
@@ -42,7 +42,7 @@ export const initStorage = async () => {
         await AsyncStorage.getItem(keys.TEMPLATES)
         .then(async (templates) => {
             templates = JSON.parse(templates)
-            if(templates === null)
+            if(true)
                 await AsyncStorage.setItem(keys.TEMPLATES, JSON.stringify(templatesData))
         })
         //TODO setja inn grunn template

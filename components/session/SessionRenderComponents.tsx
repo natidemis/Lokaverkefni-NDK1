@@ -130,8 +130,7 @@ export const SessionButtons = ( { setAnimation, setSessionActivityState, setShoo
                     title: data.title,
                     date: getCurrentDate(),
                     duration: 'HH:mm:ss',
-                    template: data,
-                    exercises: data.info
+                    info: [...data.info]
                   }
                 )
                 saveTemplate(data)

@@ -37,6 +37,7 @@ export const DataContextProvider = (props) => {
           fetchData(keys.HISTORY)
           .then((histResult) => {
               setHistory(histResult)
+              console.log("HISTORY--",histResult)
           })
           fetchTemplates()
           .then((templates) => {
@@ -53,6 +54,7 @@ export const DataContextProvider = (props) => {
       
     }
     const saveSession = (session: TSession) => {
+        console.log("saving",[session,...history])
         setHistory([session,...history])
         storeHistory(session)
     }
