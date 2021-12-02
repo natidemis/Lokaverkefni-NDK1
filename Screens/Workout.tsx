@@ -1,14 +1,14 @@
 import { Button, Text, View, ImageBackground} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import styles from '../Styles';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Session } from '../components/session/Session';
 import {dummyTemplate } from '../data/fakedata';
-import { BackgroundImage } from '../components/BackgroundImage/BackgroundImage';
 import TemplateView from '../components/Template/Template';
 import {TTemplate } from '../data/types';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import { fetchData, keys } from '../data/Datastorage/datastorage';
+import { BackgroundContext } from '../BackgroundContext';
 
 const dt = dummyTemplate('dummy')
 const Sessions = () => {
@@ -16,6 +16,7 @@ const Sessions = () => {
     const [isSessionActive, setSessionActivityState] = useState<boolean>(false);
     const [shootConfetti, setShootConfetti] = useState<boolean>(false);
     const [allTemplates, setAllTemplates] = useState<TTemplate[] | null>(null);
+    const {BackgroundImage} = useContext(BackgroundContext)
     
     useEffect(() => {
       const getData = async () => {

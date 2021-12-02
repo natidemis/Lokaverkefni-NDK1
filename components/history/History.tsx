@@ -10,7 +10,7 @@ export default function HistoryComponent({history}: {history: TSession[]}){
 
     return (
         <ScrollView contentContainerStyle={historyStyle.container}>
-            {history.map((session, i) => {
+            {history ? history.map((session, i) => {
                 return (
                   <Pressable key={i} onPress={() => {
                       //do something
@@ -25,7 +25,7 @@ export default function HistoryComponent({history}: {history: TSession[]}){
                     </View>
                   </Pressable>
                 )
-            })}
+            }): null}
         </ScrollView>
     )
 }

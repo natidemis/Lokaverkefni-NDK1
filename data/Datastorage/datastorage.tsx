@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { dummyTemplate } from '../fakedata';
 import { ExerciseType, TExercise } from '../types';
-import { ExerciseData } from './data';
+import { ExerciseData } from './ExerciseData';
 
 export enum keys {
     HISTORY = 'History',
@@ -37,7 +37,7 @@ export const initStorage = async () => {
 
         //TODO setja inn grunn template
     }catch (e){
-        alert('error')
+        alert('Villa að upphafstilla gögn')
     }
 }
 
