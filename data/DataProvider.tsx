@@ -19,15 +19,20 @@ export const DataContextProvider = (props) => {
     const [allTemplates, setAllTemplates] = useState<TTemplate[]>(null);
     useEffect(()=>{
         const getData = async () => {
-          const resultExercises: TExercise = await fetchData(keys.ALLEXERCISES)
-          let exerciseData:TExercise[] = []
-          for(let [_, value] of Object.entries(resultExercises)){
-            //@ts-ignore
-            exerciseData.push(value)
-          }
-          const resultHist: TSession[] = await fetchData(keys.HISTORY)
-          setExercises(exerciseData)
-          setHistory(resultHist)
+          fetchData(keys.ALLEXERCISES)
+          .then((resultExercises) => {
+            let exerciseData:TExercise[] = []
+            for(let [_, value] of Object.entries(resultExercises)){
+              //@ts-ignore
+              exerciseData.push(value)
+            }
+            setExercises(exerciseData)
+          })
+  
+          fetchData(keys.HISTORY)
+          .then((histResult) => {
+              setHistory(histResult)
+          })
         }
         getData()
       },[])

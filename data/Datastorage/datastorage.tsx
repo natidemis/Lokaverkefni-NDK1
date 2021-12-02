@@ -53,23 +53,22 @@ export const initStorage = async () => {
 export const fetchData= async (key: keys) => {
     const data = await AsyncStorage.getItem(key)
     return JSON.parse(data)
-    var result;
-    AsyncStorage.getItem(key)
-    .then(data => {
-        result = JSON.parse(data)
-    })
-    return result
 }
 
 export const storeExercise = (exercise: TExercise) => {
     AsyncStorage.getItem(keys.ALLEXERCISES)
         .then(async (exercises) => {
-            exercises = JSON.parse(exercises) || {}
-            exercises[exercise.id.toString()] = exercise
-            AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify(exercises))
+            var exercisesOBJ = JSON.parse(exercises) || {}
+            exercisesOBJ[exercise.id.toString()] = exercise
+            AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify(exercisesOBJ))
         })
 }
 
 export const storeHistory = (session: TSession) => {
-    
+    AsyncStorage.getItem(keys.HISTORY)
+        .then(async (history) => {
+            var histOBJ = JSON.parse(history) 
+            histOBJ.push(session)
+            AsyncStorage.setItem(keys.HISTORY, JSON.stringify(histOBJ))
+        })
 }
