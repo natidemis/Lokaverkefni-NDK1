@@ -9,6 +9,7 @@ import { Animations } from "../Misc/animations";
 import { templateModalStyle } from "../Template/TemplateStyles";
 import { DataContext } from "./DataContext";
 import { StorageContext } from "../../data/DataProvider";
+import getCurrentDate from "../../utils/date";
 
 export const SessionHiddenButton = () => {
   return(
@@ -127,7 +128,7 @@ export const SessionButtons = ( { setAnimation, setSessionActivityState, setShoo
                 saveSession(
                   {
                     title: data.title,
-                    date: new Date(),
+                    date: getCurrentDate(),
                     duration: 'HH:mm:ss',
                     template: data,
                     exercises: data.info

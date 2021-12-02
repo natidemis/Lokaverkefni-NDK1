@@ -6,7 +6,7 @@ import styles from "../../Styles";
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 
 
-export default function DateComponent({item, style}:{item: TTemplate | TSession, style: StyleProp<ViewStyle>}){
+export default function DateComponent({item, style}:{item: TSession, style: StyleProp<ViewStyle>}){
     if (item.date){
         return (
           <View style ={style}>

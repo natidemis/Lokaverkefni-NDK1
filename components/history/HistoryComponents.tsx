@@ -51,7 +51,7 @@ export const HistorySets = ({info}: {info: TTemplateExercises[]}): ReactElement<
                 const bestSet: TSet = data.exercise.sets.sort(sortSet).slice(-1)[0];
                 if(bestSet === undefined){
                     return(
-                        <Text></Text>
+                        <Text key={i}></Text>
                     )
                 }else {
                 return(

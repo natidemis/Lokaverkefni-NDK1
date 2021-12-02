@@ -44,7 +44,6 @@ export default function TemplateView({
                 {template.info.map((info, j) => {
                   return (<Text key={j} style={[styles.text, {textAlign: 'left'}]} numberOfLines={1}>{info.exercise.title}</Text>)
                 })}
-                <DateComponent style={templateStyle.dateView} item={template}></DateComponent>
               </ScrollView>
             </Pressable>
           )
