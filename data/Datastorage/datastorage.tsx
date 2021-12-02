@@ -12,18 +12,19 @@ export enum keys {
 export const initStorage = async () => {
     
     try{
-        AsyncStorage.getItem(keys.HISTORY)
+        await AsyncStorage.getItem(keys.HISTORY)
         .then(async (history) => {
             history = JSON.parse(history)
-            if(!history){
+            if(history === null){
                 await AsyncStorage.setItem(keys.HISTORY, JSON.stringify([]))
             }
         })
         
-        AsyncStorage.getItem(keys.ALLEXERCISES)
+        
+       await AsyncStorage.getItem(keys.ALLEXERCISES)
         .then(async (exercises) => {
             exercises = JSON.parse(exercises)
-            if(exercises && Object.keys(exercises).length === 0) { 
+            if(exercises === null) { 
                 var exerciseItems = {}
                 ExerciseData.forEach(([title, type]:[string, ExerciseType]) => {
                     exerciseItems[title+'('+type+')'] = {
@@ -37,10 +38,10 @@ export const initStorage = async () => {
             }
         })
         
-        AsyncStorage.getItem(keys.TEMPLATES)
+        await AsyncStorage.getItem(keys.TEMPLATES)
         .then(async (templates) => {
             templates = JSON.parse(templates)
-            if(!templates)
+            if(templates === null)
                 await AsyncStorage.setItem(keys.TEMPLATES, JSON.stringify([dummyTemplate()]))
         })
         //TODO setja inn grunn template
@@ -52,4 +53,10 @@ export const initStorage = async () => {
 export const fetchData= async (key: keys) => {
     const data = await AsyncStorage.getItem(key)
     return JSON.parse(data)
+    var result;
+    AsyncStorage.getItem(key)
+    .then(data => {
+        result = JSON.parse(data)
+    })
+    return result
 }
