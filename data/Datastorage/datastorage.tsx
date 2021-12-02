@@ -10,6 +10,7 @@ export enum keys {
 
 export const initStorage = async () => {
     console.log("INITIALIZING..................")
+    
     try{
         let history = await AsyncStorage.getItem(keys.HISTORY)
         history = JSON.parse(history)

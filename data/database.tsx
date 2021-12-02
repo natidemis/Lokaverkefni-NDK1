@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Session } from './types';
+import { TSession } from './types';
 
 //TODO : fall sem setur inn lista af æfingum í gagnagrunn
 
 
-export async function fetchSessions(key: string): Promise<Session> {
+export async function fetchSessions(key: string): Promise<TSession> {
   const sessions = await AsyncStorage.getItem(key)
   const data = JSON.parse('sessions')
 
