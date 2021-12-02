@@ -5,28 +5,38 @@ import styles from "../../Styles";
 import { AlphabetList } from "react-native-section-alphabet-list";
 import { ExercisesWkey } from "../session/Session";
 import { ExerciseStyles } from "./ExerciseStyle";
-import { NewExerciseButton } from "./ExerciseComponents";
-
+import { NewExerciseButton, SearchBar } from "./ExerciseComponents";
+import filter from 'lodash.filter';
 type ExercisesUnwrapped = {
   value: string,
   key: string
   
 }
+export type DataProptype = {
+  value: string,
+  key: string,
+}
 export function Exercise({ exercises }: { exercises: TExercise[] }) {
-  const data = exercises.map((exercise,i) => (
+  const [query, setQuery] = useState<string>("")
+  const data: DataProptype[] = exercises.map((exercise,i) => (
     {
       value: `${exercise.title}(${exercise.type})`,
       key: `${i}`
     }
   ))
+  const [list, setList] = useState<DataProptype[]>(data)
 
+ 
   return (
     <View style={ExerciseStyles.container}>
       <View style={ExerciseStyles.modalView}>
-        <NewExerciseButton/>
+        {/**<NewExerciseButton/>**/}
+        <View style={{width: '105%'}}>
+          <SearchBar query={query} setQuery={setQuery} data={data} setData={setList}/>
+        </View>
         <AlphabetList
           style={ExerciseStyles.alphabetList}
-          data={data} 
+          data={list} 
           indexLetterStyle= {{
             color: 'lightblue', 
             fontSize: 12,
@@ -53,6 +63,9 @@ export function Exercise({ exercises }: { exercises: TExercise[] }) {
               )
           }
         />
+        <View style={{width: '105%', top: 10}}>
+          <NewExerciseButton/>
+        </View>
       </View>
     </View>
   )

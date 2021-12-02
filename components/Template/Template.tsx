@@ -35,14 +35,14 @@ export default function TemplateView({
               setActiveTemplate(template);
               setModalVisible(!modalVisible);
             }}>
-              <ScrollView style={templateStyle.template} key={i}>
+              <ScrollView style={[templateStyle.template,{padding:10}]} key={i}>
                 <Text
-                  style={[styles.title, {fontSize: 18}]}
-                  numberOfLines={1}>
+                  style={[styles.title, {fontSize: 15}]}
+                  numberOfLines={3}>
                   {template.title}
                 </Text>
                 {template.info.map((info, j) => {
-                  return (<Text key={j} style={[styles.text, {textAlign: 'left'}]} numberOfLines={1}>{info.exercise.title}</Text>)
+                  return (<Text key={j} style={[styles.text, {textAlign: 'left',fontSize: 11}]} numberOfLines={1}>{info.exercise.title}</Text>)
                 })}
               </ScrollView>
             </Pressable>

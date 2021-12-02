@@ -50,7 +50,7 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
        <View>
         <SwipeListView
           style={{width:'100%'}}
-          data={data.info[exerciseRowIndex].exercise.sets.sort((a:TSet,b:TSet) => a.id-b.id)} //sprt the sets by ID
+          data={data.info[exerciseRowIndex].exercise.sets.sort((a:TSet,b:TSet) => a.id-b.id)} //sort the sets by ID
           keyExtractor={item => item.id.toString()}
           renderItem={(content) => {
             return (

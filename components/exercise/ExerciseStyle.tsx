@@ -6,31 +6,30 @@ export const ExerciseStyles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 0,
     
   },
   alphabetList: {
     display: 'flex',
     flexDirection: 'row',
     width: '105%',
-    height: '80%',
+    height: '72%',
     margin: 0,
-    backgroundColor: "white",
+    backgroundColor: "#F3F3F3",
     borderRadius: 20,
     padding: 0,
     paddingBottom: 0,
     alignItems: "baseline",
-
   },
   modalView: {
     display: 'flex',
     flexDirection: 'column',
     width: '85%',
     margin: 0,
-    backgroundColor: "white",
+    backgroundColor: "#F3F3F3",
     borderRadius: 20,
     paddingLeft: 25,
-    paddingRight: 25,
+    paddingRight: 35,
     paddingTop: 25,
     alignItems: "baseline",
     shadowColor: "#000",
@@ -49,13 +48,16 @@ export const ExerciseStyles = StyleSheet.create({
     marginBottom: 8,
   },
   textView: {
-    display:'flex',
-    flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#FBFBFB',
-    paddingTop: 7,
-    height: 30,
+    backgroundColor: 'white',
+    display:'flex',
+    flexDirection: 'column',
+    justifyContent:'center',
+    height: 50,
     marginBottom: 5,
+    paddingLeft: 10,
+    borderRadius: 5,
+    
   },
   title: {
     color: '#000000',
@@ -72,14 +74,17 @@ export const ExerciseStyles = StyleSheet.create({
       borderBottomColor: 'grey',
       borderBottomWidth: 1,
       marginBottom: 5,
-      backgroundColor:'white'
+      backgroundColor:'white',
+      paddingLeft: 10,
+      borderRadius: 5,
   },
   button: {
-    width: 100,
+    width: '100%' ,
     height: 40,
     borderRadius: 5,
     paddingTop: 8,
-    backgroundColor: "#90EE90"
+    backgroundColor: "#90EE90",
+    marginTop: 15,
   },
 
   btnTextStyle: {
@@ -93,6 +98,6 @@ export const ExerciseStyles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row',
       width: '100%',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
   }
 });
