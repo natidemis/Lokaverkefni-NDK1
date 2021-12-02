@@ -38,5 +38,5 @@ export type TSession =  {
   date: string
   duration: string //Laga seinna set Hh:Mm:Ss format
   template: TTemplate //
-  exercises: TExercise[] // Líklega upphafstillt sem Template.exercise Ef notandi er að nota ákveðið template.
+  exercises: TTemplateExercises[] // Líklega upphafstillt sem Template.exercise Ef notandi er að nota ákveðið template.
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react"
-import { TExercise, TSession, TSet } from "../../data/types"
+import { TExercise, TSession, TSet, TTemplateExercises } from "../../data/types"
 import styles from "../../Styles"
 import DateComponent, { DurationComponent } from "../Misc/date"
 import { historyStyle } from "./HistoryStyle"
@@ -22,19 +22,19 @@ export const HistoryHeader = ( {session}: {session: TSession}) => {
 
 
 
-export const HistoryExercise = ({exercises}: {exercises: TExercise[]}): ReactElement<View> => {
+export const HistoryExercise = ({info}: {info: TTemplateExercises[]}): ReactElement<View> => {
     
     return (
         <View style={historyStyle.exercisesList}>
             <Text style={styles.title}>Exercises</Text>
-            {exercises.map((exercise, i) => {
+            {info.map((data, i) => {
               return(
                 <Text 
                     style={[styles.text, {color: 'black'}]} 
                     key={i} 
                     numberOfLines={1}
                 > 
-                    {exercise.sets.length} × {exercise.title}({exercise.type})
+                    {data.numSets} × {data.exercise.title}({data.exercise.type})
                 </Text>
                 )
             })}
@@ -43,25 +43,28 @@ export const HistoryExercise = ({exercises}: {exercises: TExercise[]}): ReactEle
 }
 
 
-export const HistorySets = ({exercises}: {exercises: TExercise[]}): ReactElement<View> =>{
+export const HistorySets = ({info}: {info: TTemplateExercises[]}): ReactElement<View> =>{
     return(
         <View style={historyStyle.exercisesSetsList}>
             <Text style={styles.title}>Best sets</Text>
-            {exercises.map((exercise,i) => {
-                const bestSet: TSet = exercise.sets.sort(sortSet).slice(-1)[0];
+            {info.map((data,i) => {
+                const bestSet: TSet = data.exercise.sets.sort(sortSet).slice(-1)[0];
                 if(bestSet === undefined){
                     return(
                         <Text></Text>
                     )
                 }else {
                 return(
-                    <Text 
-                    style={[styles.text, {color: 'black'}]} 
-                    key={i} 
-                    numberOfLines={1}
-                    > 
-                        {bestSet.reps} × {bestSet.weight} kg
-                    </Text>
+                    <>
+                        {bestSet.reps && bestSet.weight ?
+                            <Text 
+                                style={[styles.text, {color: 'black'}]} 
+                                key={i} 
+                                numberOfLines={1}
+                            > 
+                                {bestSet.reps} × {bestSet.weight} kg
+                            </Text> : <Text style={[styles.text, {color: 'black'}]} >Missing info</Text>}
+                    </>
                 )}
             })}
         </View>

@@ -6,7 +6,7 @@ import { templatesData } from './TemplateData';
 
 
 export const fetchData= async (key: keys) => {
-    var result;
+    var result: any;
     await AsyncStorage.getItem(key).then((data) => {
         result= JSON.parse(data)
     })
@@ -18,6 +18,7 @@ export const fetchTemplates= async () => {
     await AsyncStorage.getItem(keys.TEMPLATES)
     .then(async (data) => {
         result= JSON.parse(data)
+        //loop through each template
         for(var i in result){
             for(var j in result[i].info){
                 //update the exercise by fetching from the exercise storage

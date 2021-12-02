@@ -16,11 +16,11 @@ export default function HistoryComponent({history}: {history: TSession[]}){
                       //do something
                   }}
                   >
-                    <View style={historyStyle.sessionHist}>
+                    <View style={historyStyle.sessionHist} key={i}>
                         <HistoryHeader session={session} />
                         <View style={historyStyle.historySection}>
-                            <HistoryExercise exercises={session.exercises} />
-                            <HistorySets exercises={session.exercises} />
+                            <HistoryExercise info={session.exercises} />
+                            <HistorySets info={session.exercises} />
                         </View>
                     </View>
                   </Pressable>

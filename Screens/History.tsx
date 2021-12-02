@@ -7,17 +7,12 @@ import { TSession } from '../data/types';
 import { keys } from '../data/Datastorage/setup';
 import { BackgroundContext } from '../BackgroundContext';
 import { fetchData } from '../data/Datastorage/datastorage';
+import { StorageContext } from '../data/DataProvider';
 
 const HistoryScreen = () => {
     const {BackgroundImage} = useContext(BackgroundContext)
-    const [history, setHistory] = useState<TSession[]>(null)
-    useEffect(()=>{
-      const getData = async () => {
-        const result: TSession[] = await fetchData(keys.HISTORY)
-        setHistory(result)
-      }
-      getData();
-    },[])
+    const {history} = useContext(StorageContext).historyVariables
+
     return (
       <React.Fragment>
         <BackgroundImage>

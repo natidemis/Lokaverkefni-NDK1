@@ -7,7 +7,7 @@ import { BackgroundContext } from '../BackgroundContext';
 import { StorageContext } from '../data/DataProvider';
 const ExerciseScreen = () => {
     //TODO: save exercise
-    const {exercises, saveExercise} = useContext(StorageContext).exerciseVariables
+    const {exercises} = useContext(StorageContext).exerciseVariables
     const {BackgroundImage} = useContext(BackgroundContext)
     return (
       <>

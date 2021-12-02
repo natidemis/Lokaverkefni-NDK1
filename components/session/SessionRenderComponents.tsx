@@ -8,6 +8,7 @@ import { data } from "./Session";
 import { Animations } from "../Misc/animations";
 import { templateModalStyle } from "../Template/TemplateStyles";
 import { DataContext } from "./DataContext";
+import { StorageContext } from "../../data/DataProvider";
 
 export const SessionHiddenButton = () => {
   return(
@@ -105,6 +106,7 @@ type BtnProps = {
 }
 
 export const SessionButtons = ( { setAnimation, setSessionActivityState, setShootConfetti, data, modalVisible}: BtnProps) => {
+  const {exercises, saveExercise, saveSession} = useContext(StorageContext).exerciseVariables
   return(
     <View style={sessionStyle.buttonsView} onLayout={
       () => {
@@ -118,6 +120,18 @@ export const SessionButtons = ( { setAnimation, setSessionActivityState, setShoo
                 //TODO: SAVE when finished.
                 setSessionActivityState(!modalVisible);
                 setShootConfetti(true);
+                data.info.map((item) => {
+                  saveExercise(item.exercise)
+                })
+                saveSession(
+                  {
+                    title: data.title,
+                    date: new Date(),
+                    duration: 'HH:mm:ss',
+                    template: data,
+                    exercises: data.info
+                  }
+                )
               }}
              >
               <Text style={sessionStyle.textStyle}>Finish</Text>
