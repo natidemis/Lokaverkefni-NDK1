@@ -25,7 +25,7 @@ export const initStorage = async () => {
        await AsyncStorage.getItem(keys.ALLEXERCISES)
         .then(async (exercises) => {
             exercises = JSON.parse(exercises)
-            if(exercises === null) { 
+            if(true) { 
                 var exerciseItems = {}
                 ExerciseData.forEach(([title, type]:[string, ExerciseType]) => {
                     exerciseItems[Object.keys(exerciseItems).length.toString()] = {

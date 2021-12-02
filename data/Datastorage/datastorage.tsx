@@ -15,12 +15,14 @@ export const fetchData= async (key: keys) => {
 
 export const fetchTemplates= async () => {
     var result: TTemplate[];
-    await AsyncStorage.getItem(keys.TEMPLATES).then((data) => {
+    await AsyncStorage.getItem(keys.TEMPLATES)
+    .then(async (data) => {
         result= JSON.parse(data)
         for(var i in result){
             for(var j in result[i].info){
                 //update the exercise by fetching from the exercise storage
-                fetchExerciseById(result[i].info[j].exercise.id).then((exercise) => {
+                await fetchExerciseById(result[i].info[j].exercise.id)
+                .then((exercise) => {
                     result[i].info[j].exercise = exercise
                 })
             }
@@ -33,8 +35,7 @@ export const fetchExerciseById = async(id: number) => {
     var result: TExercise;
     await fetchData(keys.ALLEXERCISES)
     .then((data) => {
-        const json = JSON.parse(data)
-        result = json[id.toString()]
+        result = data[id.toString()]
     })
     return result
 }

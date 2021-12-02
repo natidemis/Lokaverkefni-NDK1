@@ -38,7 +38,8 @@ export const DataContextProvider = (props) => {
           .then((histResult) => {
               setHistory(histResult)
           })
-          fetchTemplates().then((templates) => {
+          fetchTemplates()
+          .then((templates) => {
               setAllTemplates(templates)
           })
         }
