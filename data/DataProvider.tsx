@@ -14,7 +14,7 @@ type ContextProp = {
     }
     templateVariables: {
         allTemplates: TTemplate[],
-        
+        saveTemplate: Function,
     }
 }
 export const StorageContext = React.createContext<ContextProp>(null)
@@ -80,6 +80,7 @@ export const DataContextProvider = (props) => {
             },
             templateVariables:{
                 allTemplates: allTemplates,
+                saveTemplate: saveTemplate,
             }
         }}>
             {props.children}

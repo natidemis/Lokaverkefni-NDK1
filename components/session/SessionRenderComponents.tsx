@@ -106,7 +106,8 @@ type BtnProps = {
 }
 
 export const SessionButtons = ( { setAnimation, setSessionActivityState, setShootConfetti, data, modalVisible}: BtnProps) => {
-  const {exercises, saveExercise, saveSession} = useContext(StorageContext).exerciseVariables
+  const {saveExercise, saveSession} = useContext(StorageContext).exerciseVariables
+  const {saveTemplate} = useContext(StorageContext).templateVariables
   return(
     <View style={sessionStyle.buttonsView} onLayout={
       () => {
@@ -132,6 +133,7 @@ export const SessionButtons = ( { setAnimation, setSessionActivityState, setShoo
                     exercises: data.info
                   }
                 )
+                saveTemplate(data)
               }}
              >
               <Text style={sessionStyle.textStyle}>Finish</Text>
