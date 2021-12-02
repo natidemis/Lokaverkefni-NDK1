@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, useEffect, useState } from "react"
 import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native"
-import { ExerciseType, TExercise, TSet, TTemplate } from "../../data/types"
+import { ExerciseType, TExercise, TSet, TTemplate, TTemplateExercises } from "../../data/types"
 import styles from "../../Styles"
 import { Animations } from "../Misc/animations"
 import { templateModalStyle } from "../Template/TemplateStyles"
@@ -60,12 +60,12 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
             {data? (
             <FlatList
               data={data?.info}
-              renderItem={(item) => {
+              renderItem={({item, index}) => {
                 return (
                   <ExcerciseRow 
-                    Exercise={item.item.exercise}
-                    key={item.item.exercise.id}
-                    exerciseRowIndex={item.item.exercise.id}
+                    Exercise={item.exercise}
+                    key={item.exercise.id}
+                    exerciseRowIndex={index}
                     />
                 )
               }}

@@ -33,7 +33,6 @@ type Props = {
 }
 export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
   const {data} = useContext<DataProps>(DataContext) 
-
   return(
     <>
       <Text style={styles.title}>{Exercise.title}</Text>
@@ -53,6 +52,7 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
           leftOpenValue={75}
           rightOpenValue={-150}
           />
+          
       </View> 
       <View style={sessionStyle.setButtonsView}>
         <Pressable
