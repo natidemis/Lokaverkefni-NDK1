@@ -58,3 +58,17 @@ export const storeHistory = (session: TSession) => {
             AsyncStorage.setItem(keys.HISTORY, JSON.stringify(histOBJ))
         })
 }
+
+export const storeTemplate= (template: TTemplate) => {
+    AsyncStorage.getItem(keys.TEMPLATES)
+        .then(async (templates) => {
+            var templateOBJ = JSON.parse(templates) 
+            const idx = templateOBJ.findIndex(item => item.title === template.title)
+            if(idx !== -1){
+                templateOBJ[idx] = template
+            }else{
+                templateOBJ.push(template)
+            }
+            AsyncStorage.setItem(keys.HISTORY, JSON.stringify(templateOBJ))
+        })
+}

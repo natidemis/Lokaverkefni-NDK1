@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData, fetchTemplates, storeExercise, storeHistory } from "./Datastorage/datastorage";
+import { fetchData, fetchTemplates, storeExercise, storeHistory, storeTemplate } from "./Datastorage/datastorage";
 import { keys,} from "./Datastorage/setup";
 import { TExercise, TSession, TTemplate } from "./types";
 
@@ -53,7 +53,19 @@ export const DataContextProvider = (props) => {
       
     }
     const saveSession = (session: TSession) => {
-      storeHistory(session)
+        setHistory([session,...history])
+        storeHistory(session)
+    }
+
+    const saveTemplate = (template: TTemplate) => {
+        const idx = allTemplates.findIndex(item => item.title === template.title)
+            if(idx !== -1){
+                allTemplates[idx] = template
+            }else{
+                allTemplates.push(template)
+            }
+            setAllTemplates(allTemplates)
+            storeTemplate(template);
     }
 
     return(
