@@ -36,7 +36,7 @@ export function SetRow( {set, exerciseRowIndex}: Props){
   
 
   const {data, setData} = useContext(DataContext) 
-  const [color, setColor] = useState<{weights: string, kg: string}>({weights: 'grey', kg: 'grey'})
+
   const [inputWeight, setInputWeight] = useState<string>(set.weight)
   const [inputReps, setInputReps] = useState<string>(set.reps)
   const [{prevWeights, prevReps}] = useState({prevWeights: set.weight, prevReps: set.reps})
@@ -48,26 +48,24 @@ export function SetRow( {set, exerciseRowIndex}: Props){
         </View>
         <PreviousSet prevWeights={prevWeights} prevReps={prevReps}></PreviousSet>
         <TextInput
-          style= {[sessionStyle.setInput,{color: color.weights} ]}
+          style= {[sessionStyle.setInput]}
           keyboardType='numeric'
+          placeholder={prevWeights}
           onChangeText={text => {
             data.info[exerciseRowIndex].exercise.sets[set.id].weight = text
             setData(data)
             setInputWeight(text)
-            color.weights = 'black'
-            setColor(color)
           }}
           value= {inputWeight}
        />
        <TextInput
-         style= {[sessionStyle.setInput,color.kg? {color: 'grey'} : null]}
+         style= {[sessionStyle.setInput]}
          keyboardType='numeric'
+         placeholder={prevReps}
          onChangeText={text => {
           data.info[exerciseRowIndex].exercise.sets[set.id].reps = text
           setData(data)
           setInputReps(text)
-          color.kg = 'black'
-          setColor(color)
         }}
          value= {inputReps}
         />
