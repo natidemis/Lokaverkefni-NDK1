@@ -21,6 +21,7 @@ const HistoryScreen = () => {
     },[])
     return (
       <React.Fragment>
+        {console.log('history  renderin')}
         <BackgroundImage>
           <HistoryComponent history={history}/>
           <StatusBar style="auto" />      
