@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { dummyTemplate } from '../fakedata';
-import { ExerciseType, TExercise } from '../types';
+import { ExerciseType, TExercise, TSession } from '../types';
 import { ExerciseData } from './ExerciseData';
 
 export enum keys {
@@ -27,7 +27,7 @@ export const initStorage = async () => {
             if(exercises === null) { 
                 var exerciseItems = {}
                 ExerciseData.forEach(([title, type]:[string, ExerciseType]) => {
-                    exerciseItems[title+'('+type+')'] = {
+                    exerciseItems[Object.keys(exerciseItems).length.toString()] = {
                         title: title + '(' + type + ')',
                         type: type,
                         sets: [],
@@ -59,4 +59,17 @@ export const fetchData= async (key: keys) => {
         result = JSON.parse(data)
     })
     return result
+}
+
+export const storeExercise = (exercise: TExercise) => {
+    AsyncStorage.getItem(keys.ALLEXERCISES)
+        .then(async (exercises) => {
+            exercises = JSON.parse(exercises) || {}
+            exercises[exercise.id.toString()] = exercise
+            AsyncStorage.setItem(keys.ALLEXERCISES, JSON.stringify(exercises))
+        })
+}
+
+export const storeHistory = (session: TSession) => {
+    
 }

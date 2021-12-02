@@ -9,12 +9,9 @@ import Tabs from './Tabs';
 import { initStorage } from './data/Datastorage/datastorage';
 import { BackgroundContext } from './BackgroundContext';
 import { BackgroundImage } from './components/BackgroundImage/BackgroundImage';
-import { TExercise, TSession, TTemplate } from './data/types';
+import { DataContextProvider } from './data/DataProvider';
 
 export default function App() {
-  const [history, setHistory] = useState<TSession[]>(null)
-  const [allTemplates, setAllTemplates] = useState<TTemplate[]>(null);
-  const [exercises, setExercises] = useState<TExercise[]>(null);
   useEffect(() => {
     const setup = async () => {
       await initStorage();
@@ -23,16 +20,18 @@ export default function App() {
     setup();
   },[])
   return (
-    <BackgroundContext.Provider 
-      value={
-        {BackgroundImage: BackgroundImage}
-      }
-    >
-      <View style={styles.container}>
-        <NavigationContainer>
-            <Tabs/>
-        </NavigationContainer>
-      </View>
-    </BackgroundContext.Provider>
+    <DataContextProvider>
+      <BackgroundContext.Provider 
+        value={
+          {BackgroundImage: BackgroundImage}
+        }
+      >
+        <View style={styles.container}>
+          <NavigationContainer>
+              <Tabs/>
+          </NavigationContainer>
+        </View>
+      </BackgroundContext.Provider>
+    </DataContextProvider>
   )
 }
