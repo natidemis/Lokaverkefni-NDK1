@@ -27,20 +27,18 @@ export const SessionHiddenButton = () => {
 
 
 type Props = {
-  info: {
-    set: TSet, 
-    exerciseRowIndex: number,
-  }
+  set: TSet, 
+  exerciseRowIndex: number,
 }
-export function SetRow( {info}: Props){
+export function SetRow( {set, exerciseRowIndex}: Props){
   
-  const {set, exerciseRowIndex} = info
+
   const {data, setData} = useContext(DataContext) 
   const [color, setColor] = useState<{weights: string, kg: string}>({weights: 'grey', kg: 'grey'})
   const [inputWeight, setInputWeight] = useState<string>(
-    data.exercises[exerciseRowIndex].sets[set.id].previousKG)
+    data.info[exerciseRowIndex].exercise.sets[set.id].previousKG)
   const [inputReps, setInputReps] = useState<string>(
-    data.exercises[exerciseRowIndex].sets[set.id].previousREPS
+    data.info[exerciseRowIndex].exercise.sets[set.id].previousREPS
   )
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
@@ -53,7 +51,7 @@ export function SetRow( {info}: Props){
           style= {[sessionStyle.setInput,{color: color.weights} ]}
           keyboardType='numeric'
           onChangeText={text => {
-            data.exercises[exerciseRowIndex].sets[set.id].weight = text
+            data.info[exerciseRowIndex].exercise.sets[set.id].weight = text
             setData(data)
             setInputWeight(text)
             color.weights = 'black'
@@ -65,7 +63,7 @@ export function SetRow( {info}: Props){
          style= {[sessionStyle.setInput,color.kg? {color: 'grey'} : null]}
          keyboardType='numeric'
          onChangeText={text => {
-          data.exercises[exerciseRowIndex].sets[set.id].reps = text
+          data.info[exerciseRowIndex].exercise.sets[set.id].reps = text
           setData(data)
           setInputReps(text)
           color.kg = 'black'

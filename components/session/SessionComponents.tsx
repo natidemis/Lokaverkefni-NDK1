@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Pressable, TouchableHighlight } from "react-native";
 import { TExercise, TSet, TTemplate } from "../../data/types";
 import styles from "../../Styles";
@@ -6,6 +6,7 @@ import { sessionStyle } from "./SessionStyle";
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { SessionHiddenButton, SetRow } from "./SessionRenderComponents";
 import { data } from "./Session";
+import { DataContext, DataProps } from "./DataContext";
 
 
   
@@ -25,24 +26,14 @@ type TSetWithId = {
     set: TSet, 
     exerciseRowIndex: number,
   }, 
-  key: string
 }
 type Props = {
   Exercise: TExercise,
   exerciseRowIndex: number,
 }
 export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
-  const [exerciseSets, _] = useState<TSetWithId[]>(
-    Exercise.sets.map((set: TSet) => (
-      {
-        data: {
-          set: set, 
-          exerciseRowIndex: exerciseRowIndex,
-        },
-        key: `${set.id}`
-      }
-    ))
-  )
+  const {data} = useContext<DataProps>(DataContext) 
+
   return(
     <>
       <Text style={styles.title}>{Exercise.title}</Text>
@@ -50,11 +41,11 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
        <View>
         <SwipeListView
           style={{width:'100%'}}
-          data={exerciseSets}
+          data={data.info[exerciseRowIndex].exercise.sets}
           renderItem={(content) => {
             return (
                 <TouchableHighlight>
-                  <SetRow info={content.item.data}/>
+                  <SetRow set={content.item} exerciseRowIndex={exerciseRowIndex}/>
                 </TouchableHighlight>
             )}
           }

@@ -1,3 +1,8 @@
 import { createContext } from "react";
+import { TTemplate } from "../../data/types";
 
-export const DataContext =  createContext(null);
+export type DataProps = {
+    data: TTemplate,
+    setData: React.Dispatch<React.SetStateAction<TTemplate>>,
+}
+export const DataContext =  createContext<DataProps>(null);
