@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Pressable, TouchableHighlight } from "react-native";
 import { TExercise, TSet, TTemplate } from "../../data/types";
 import styles from "../../Styles";
@@ -32,17 +32,27 @@ type Props = {
   exerciseRowIndex: number,
 }
 export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
-  const {data} = useContext<DataProps>(DataContext)
+  const {data,setData, isFinished, isSessionActive} = useContext<DataProps>(DataContext)
+  const [setList, updateSetList] = useState<TSet[]>([...data.info[exerciseRowIndex].exercise.sets])
   const numSets = data.info[exerciseRowIndex].numSets - data.info[exerciseRowIndex].exercise.sets.length
-  for(var i = 0; i < numSets; i++){
-    data.info[exerciseRowIndex].exercise.sets.push(
-      {
-        weight: "",
-        reps: "",
-        id: data.info[exerciseRowIndex].exercise.sets.length
-      }
-    )
-  }
+  useEffect(() => {
+    updateSetList([...data.info[exerciseRowIndex].exercise.sets])
+    for(var i = 0; i < numSets;i++){
+      setList.push(
+        {
+          weight: "",
+          reps: "",
+          id: setList.length
+        }
+      )
+    }
+  },[isSessionActive])
+  useEffect(()=> {
+    if(isFinished)
+      data.info[exerciseRowIndex].exercise.sets = setList
+      setData(data)
+  },[isFinished])
+  console.log(setList)
   return(
     <>
       <Text style={styles.title}>{Exercise.title}</Text>
@@ -50,13 +60,14 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
        <View>
         <SwipeListView
           style={{width:'100%'}}
-          data={data.info[exerciseRowIndex].exercise.sets.sort((a:TSet,b:TSet) => a.id-b.id)} //sort the sets by ID
+          data={setList.sort((a:TSet,b:TSet) => a.id-b.id)} //sort the sets by ID
           keyExtractor={item => item.id.toString()}
           renderItem={(content) => {
             return (
                 <TouchableHighlight>
                   <SetRow set={content.item} 
-                  exerciseRowIndex={exerciseRowIndex}/>
+                    exerciseRowIndex={exerciseRowIndex}
+                  />
                 </TouchableHighlight>
             )}
           }
@@ -72,6 +83,14 @@ export default function ExcerciseRow( { Exercise, exerciseRowIndex}:Props){
           onPress={() => {
             //TODO: create new set on click.
             //activeTemplate is used to begin a session. Passed to Workout.tsx for the <Session> component.
+            setList.push(
+              {
+                weight: "",
+                reps: "",
+                id: setList.length
+              }
+            )
+            updateSetList(setList)
           }}
          >
           <Text style={sessionStyle.textStyle}>+ set</Text>

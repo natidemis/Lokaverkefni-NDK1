@@ -32,7 +32,7 @@ export type data = {
 export function Session({ modalVisible, template, setSessionActivityState, setShootConfetti}: Props) {
     const [animation, setAnimation] = useState<Animations>(Animations.none);
     const [data, setData] = useState<TTemplate>(template)
-
+    const [isFinished, setIsFinished] = useState<boolean>(false);
 
     useEffect(() => {
       setData(template)
@@ -52,7 +52,10 @@ export function Session({ modalVisible, template, setSessionActivityState, setSh
       <DataContext.Provider 
         value={{
           data: data,
-          setData: setData
+          setData: setData,
+          isFinished: isFinished,
+          setIsFinished: setIsFinished,
+          isSessionActive: modalVisible,
         }
       }>
         <View style= {sessionStyle.centeredView}>

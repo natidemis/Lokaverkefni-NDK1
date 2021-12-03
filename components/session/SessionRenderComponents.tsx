@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { ListRenderItemInfo, Pressable, TouchableHighlight, View, Text, TextInput} from "react-native"
 import { sessionStyle } from "./SessionStyle"
 import { EvilIcons } from '@expo/vector-icons';
@@ -35,11 +35,15 @@ type Props = {
 export function SetRow( {set, exerciseRowIndex}: Props){
   
 
-  const {data, setData} = useContext(DataContext) 
+  const {data, setData, isSessionActive} = useContext(DataContext) 
 
   const [inputWeight, setInputWeight] = useState<string>(set.weight)
   const [inputReps, setInputReps] = useState<string>(set.reps)
   const [{prevWeights, prevReps}] = useState({prevWeights: set.weight, prevReps: set.reps})
+  useEffect(() => {
+    setInputWeight(set.weight)
+    setInputReps(set.reps)
+    },[isSessionActive])
   return(
     <TouchableHighlight style={sessionStyle.exerciseSetStyle}>
       <React.Fragment>
